@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getGenre, sortBy } from "../../data/data";
-import { requestFetch } from "../../redux/reducers/movieFetchReducer";
+import {
+  requestFetch,
+  movieListClear,
+} from "../../redux/reducers/movieFetchReducer";
 import { useDispatch } from "react-redux";
 
 export default function Aside() {
   const [getSortURL, setGetSortURL] = useState(sortBy[0].sortURL);
   const [getGenreID, setGetGenreID] = useState(getGenre[0].genreID);
+  const currentRef = useRef(null);
   const dispatch = useDispatch();
 
   function genreClickHandler(id) {
@@ -17,8 +21,15 @@ export default function Aside() {
   }
 
   useEffect(() => {
-    const URL = getSortURL + "with_genres=" + getGenreID + "&page=1" + "&";
-    dispatch(requestFetch(URL));
+    if (currentRef.current) {
+      dispatch(movieListClear());
+      const URL = getSortURL + "with_genres=" + getGenreID;
+      dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
+    }
+
+    return () => {
+      currentRef.current = true;
+    };
   }, [getSortURL, getGenreID]);
 
   return (
