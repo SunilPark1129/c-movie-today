@@ -73,12 +73,12 @@ export const getGenre = [
   },
 ];
 
-export const sortBy = {
-  popular: "/discover/movie?sort_by=popularity.desc&",
-  recent: "/movie/upcoming?",
-  voted: "/discover/movie?sort_by=vote_count.desc&",
-  revenue: "/discover/movie?sort_by=revenue.desc&",
-};
+export const sortBy = [
+  { sortName: "Popular", sortURL: "/discover/movie?sort_by=popularity.desc&" },
+  { sortName: "recent", sortURL: "/movie/upcoming?" },
+  { sortName: "voted", sortURL: "/discover/movie?sort_by=vote_count.desc&" },
+  { sortName: "revenue", sortURL: "/discover/movie?sort_by=revenue.desc&" },
+];
 
 export const matchGenre = (item) => {
   switch (item) {
