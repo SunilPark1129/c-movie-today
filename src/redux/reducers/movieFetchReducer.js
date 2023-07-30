@@ -1,11 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+/**
+ * state roles
+ * @param {Object} data - fetched information
+ * @param {boolean} isLoading - fetch loading
+ * @param {boolean} error - error message
+ * @param {[{movie: Object, page: number}]} lists - movie lists
+ */
 const initialState = {
-  data: null, // fetched information
+  data: null,
   isLoading: false,
   error: null,
-  lists: [], // movie lists
+  lists: [],
 };
 
 const API_KEY = "api_key=b0a4d245d5b20ec7da2f1eb0a7b47d89";
@@ -18,7 +25,6 @@ export const requestFetch = createAsyncThunk(
     if (url !== null) {
       currentURL = url;
     }
-    console.log(url);
     const data = await axios.get(BASE_URL + currentURL + currentPage + API_KEY);
     return data.data;
   }
@@ -39,9 +45,11 @@ const fetchSlice = createSlice({
     });
     builder.addCase(requestFetch.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
       state.data = action.payload;
-      state.lists = [...state.lists, [...action.payload.results]];
+      state.lists = [
+        ...state.lists,
+        { movies: action.payload.results, page: state.lists.length + 1 },
+      ];
     });
     builder.addCase(requestFetch.rejected, (state, action) => {
       state.isLoading = false;
