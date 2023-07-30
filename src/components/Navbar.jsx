@@ -12,7 +12,11 @@ export default function Navbar() {
   return (
     <nav>
       {labels.map(({ label, path }) => {
-        return <Link to={path}>{label}</Link>;
+        return (
+          <Link to={path} key={label}>
+            {label}
+          </Link>
+        );
       })}
     </nav>
   );
