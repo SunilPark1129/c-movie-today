@@ -1,4 +1,4 @@
-export const request = [
+export const getGenre = [
   {
     genreName: "Comedy",
     genreID: "35",
