@@ -12,7 +12,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        <header>
+          <Navbar />
+        </header>
         <div className="wrapper">
           <Routes>
             <Route exact path="/" element={<Main />} />
