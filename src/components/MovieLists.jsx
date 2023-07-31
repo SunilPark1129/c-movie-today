@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { requestFetch } from "../redux/reducers/movieFetchReducer";
 import Loading from "./Loading";
@@ -20,7 +20,6 @@ function Lists({ movies, page }) {
 
   useEffect(() => {
     if (isVisible) {
-      console.log("fetching another page . . .");
       dispatch(
         requestFetch({
           url: null,
@@ -50,15 +49,14 @@ function Lists({ movies, page }) {
 }
 
 export default function MovieLists() {
-  const { lists, error, isLoading } = useSelector((state) => {
-    // console.log(state);
-    return state.movieFetchReducer;
-  });
+  const { lists, error, isLoading } = useSelector(
+    (state) => state.movieFetchReducer
+  );
 
   return (
     <div>
       <div>
-        {/* {error ? (
+        {error ? (
           <ErrorMessage error={error} />
         ) : (
           lists.map(({ movies, page }) => (
@@ -68,7 +66,7 @@ export default function MovieLists() {
               key={page}
             />
           ))
-        )} */}
+        )}
         {isLoading ? <Loading /> : null}
       </div>
     </div>

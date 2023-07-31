@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export default function useObserver(ref, option) {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +19,9 @@ export default function useObserver(ref, option) {
       observer.observe(target);
     }
 
-    return () => observer.unobserve(target);
+    return () => {
+      if (target) observer.unobserve(target);
+    };
   }, [ref, optionMemo]);
 
   return isVisible;
