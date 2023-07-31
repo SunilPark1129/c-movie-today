@@ -11,17 +11,27 @@ const labels = [
 
 export default function Navbar() {
   return (
-    <nav>
-      <Link to="/">
-        <img src={logo} alt="logo" width={40} />
-      </Link>
-      {labels.map(({ label, path }) => {
-        return (
-          <Link to={path} key={label}>
-            {label}
+    <header className="header">
+      <nav>
+        <div>
+          <Link to="/">
+            <img src={logo} alt="logo" />
           </Link>
-        );
-      })}
-    </nav>
+          <ul>
+            {labels.map(({ label, path }) => {
+              return (
+                <li key={label}>
+                  <Link to={path}>{label}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div>
+          <p>search</p>
+          <p>color mode</p>
+        </div>
+      </nav>
+    </header>
   );
 }

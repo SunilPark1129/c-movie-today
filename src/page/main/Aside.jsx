@@ -9,15 +9,19 @@ import { useDispatch } from "react-redux";
 export default function Aside() {
   const [getSortURL, setGetSortURL] = useState(sortBy[0].sortURL);
   const [getGenreID, setGetGenreID] = useState(getGenre[0].genreID);
+  const [getSortName, setGetSortName] = useState(sortBy[0].sortName);
+  const [getGenreName, setGetGenreName] = useState(getGenre[0].genreName);
   const currentRef = useRef(null);
   const dispatch = useDispatch();
 
-  function genreClickHandler(id) {
-    setGetGenreID(id);
+  function sortClickHandler(url, name) {
+    setGetSortURL(url);
+    setGetSortName(name);
   }
 
-  function sortClickHandler(url) {
-    setGetSortURL(url);
+  function genreClickHandler(id, name) {
+    setGetGenreID(id);
+    setGetGenreName(name);
   }
 
   useEffect(() => {
@@ -25,6 +29,7 @@ export default function Aside() {
       dispatch(movieListClear());
       const URL = getSortURL + "with_genres=" + getGenreID;
       dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
+      window.scrollTo(0, 0);
     }
 
     return () => {
@@ -33,21 +38,34 @@ export default function Aside() {
   }, [getSortURL, getGenreID]);
 
   return (
-    <div>
-      <div>
+    <aside>
+      <section>
+        <h3>Sort</h3>
         {sortBy.map(({ sortName, sortURL }) => (
-          <button key={sortName} onClick={() => sortClickHandler(sortURL)}>
+          <button
+            className={`${getSortName === sortName && "activated"}`}
+            key={sortName}
+            onClick={() => sortClickHandler(sortURL, sortName)}
+          >
             {sortName}
           </button>
         ))}
-      </div>
-      <div>
-        {getGenre.map(({ genreName, genreID }) => (
-          <button key={genreName} onClick={() => genreClickHandler(genreID)}>
-            {genreName}
-          </button>
-        ))}
-      </div>
-    </div>
+      </section>
+      <section>
+        <h3>Genre</h3>
+        {getGenre.map(({ genreName, genreID }) => {
+          console.log(getGenreName, genreName);
+          return (
+            <button
+              className={`${getGenreName === genreName && "activated"}`}
+              key={genreName}
+              onClick={() => genreClickHandler(genreID, genreName)}
+            >
+              {genreName}
+            </button>
+          );
+        })}
+      </section>
+    </aside>
   );
 }

@@ -1,1 +1,33 @@
-/*# sourceMappingURL=navbar.css.map */
+.header {
+  background-color: var(--primary-clr);
+}
+
+nav {
+  display: flex;
+  margin: auto;
+  height: 4em;
+  justify-content: space-between;
+  max-width: 2000px;
+}
+nav > div {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  padding: 0 1em;
+}
+nav img {
+  width: 3em;
+}
+nav ul {
+  display: flex;
+  gap: 1em;
+  font-weight: bold;
+}
+nav a,
+nav p {
+  display: flex;
+  color: var(--fnt-white-clr);
+}
+nav a:hover {
+  color: var(--point-clr);
+}/*# sourceMappingURL=navbar.css.map */

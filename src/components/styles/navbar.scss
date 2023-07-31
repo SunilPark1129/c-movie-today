@@ -1,0 +1,38 @@
+.header {
+  background-color: var(--primary-clr);
+}
+
+nav {
+  display: flex;
+  margin: auto;
+  height: 4em;
+  justify-content: space-between;
+  max-width: 2000px;
+
+  > div {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    padding: 0 1em;
+  }
+
+  img {
+    width: 3em;
+  }
+
+  ul {
+    display: flex;
+    gap: 1em;
+    font-weight: bold;
+  }
+
+  a,
+  p {
+    display: flex;
+    color: var(--fnt-white-clr);
+  }
+
+  a:hover {
+    color: var(--point-clr);
+  }
+}

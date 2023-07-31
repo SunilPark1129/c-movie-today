@@ -4,23 +4,23 @@ import Main from "./page/main/Main";
 import Search from "./page/search/Search";
 import ErrorPage from "./page/error/ErrorPage";
 import InfoPage from "./page/info/InfoPage";
-import MovieModal from "./components/MovieModal";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
+// when refreshed, scroll to top
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <header>
-          <Navbar />
-        </header>
+        <Navbar />
         <div className="wrapper">
           <Routes>
             <Route exact path="/" element={<Main />} />
-            <Route path="/search" element={<Search />}>
-              <Route path=":id" element={<MovieModal />} />
-            </Route>
+            <Route path="/search" element={<Search />} />
             <Route path="/info" element={<InfoPage />} />
             <Route path="/*" element={<ErrorPage />} />
           </Routes>

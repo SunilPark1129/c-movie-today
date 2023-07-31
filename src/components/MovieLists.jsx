@@ -22,12 +22,13 @@ function DisplayLists() {
   const { data, lists } = useSelector((state) => state.movieFetchReducer);
 
   return lists.map(({ movies, page }) => (
-    <Lists
-      movies={movies}
-      page={lists[lists.length - 1].page + 1}
-      key={page}
-      totalPage={data.total_pages}
-    />
+    <div className="lists__content" key={page}>
+      <Lists
+        movies={movies}
+        page={lists[lists.length - 1].page + 1}
+        totalPage={data.total_pages}
+      />
+    </div>
   ));
 }
 
@@ -65,6 +66,7 @@ function Lists({ totalPage, movies, page }) {
     ) => {
       return (
         <div
+          className="lists__item"
           key={id}
           ref={idx === 19 ? lastRef : null}
           onClick={() => movieClickHandler(movies[idx])}
@@ -76,14 +78,17 @@ function Lists({ totalPage, movies, page }) {
                 (poster_path || backdrop_path)
               }
               alt={title}
-              width="200"
             />
           ) : (
             <div>No image</div>
           )}
-          <p>{title}</p>
-          <p>{release_date ? release_date.replace(/-/g, "/") : "??"}</p>
-          <p>{vote_average}</p>
+          <div className="lists__item__text-box">
+            <p>{title}</p>
+            <p>{release_date ? release_date.replace(/-/g, "/") : "??"}</p>
+            <p>
+              <span>&hearts;</span> {vote_average}
+            </p>
+          </div>
         </div>
       );
     }
@@ -92,14 +97,20 @@ function Lists({ totalPage, movies, page }) {
 
 export default function MovieLists() {
   return (
-    <div>
-      <div>
+    <div className="lists">
+      <div className="lists__display">
         <MovieRecommend />
         <DisplayLists />
         <ErrorMessage />
         <Loading />
       </div>
       <MovieModal />
+
+      {/* edge radius border for styling */}
+      <div className="border">
+        <div></div>
+        <div></div>
+      </div>
     </div>
   );
 }
