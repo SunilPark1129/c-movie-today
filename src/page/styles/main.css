@@ -8,6 +8,7 @@ aside {
   max-width: 300px;
   width: 100%;
   background-color: var(--primary-clr);
+  z-index: 2;
 }
 
 .main aside {
@@ -31,16 +32,20 @@ aside {
   text-align: center;
   background-color: var(--bg-clr);
   border: none;
-  border-radius: 1em;
+  border-radius: 0.5em;
   font-weight: bold;
   color: var(--fnt-reg-clr);
   cursor: pointer;
   position: relative;
-  transition: 0.3s border-radius ease-in-out;
+  transition-property: border-radius, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
   outline: none;
+  box-shadow: 0px 0px 0px 0px rgba(80, 80, 80, 0.459);
 }
 .main aside button:after {
   transition: 0.3s transform ease-in-out;
+  box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
   position: absolute;
   content: "";
   width: 3em;
@@ -54,7 +59,8 @@ aside {
   color: var(--point-clr);
 }
 .main aside button.activated {
-  border-radius: 1em 0px 0px 1em;
+  border-radius: 0.5em 0px 0px 0.5em;
+  box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
   color: var(--point-clr);
 }
 .main aside button.activated:after {
@@ -64,7 +70,9 @@ aside {
 .lists {
   position: relative;
   width: 100%;
-  padding: 2em;
+  padding: 0 2em;
+  z-index: 3;
+  background-color: var(--bg-clr);
 }
 .lists__display {
   display: flex;
@@ -86,22 +94,25 @@ aside {
   gap: 0.5em;
   flex-direction: column;
   z-index: 9;
+  background-color: rgba(236, 236, 236, 0.6862745098);
+  border-radius: 8px;
+  padding: 1em;
 }
 .lists__recommend__text-box h3,
 .lists__recommend__text-box p {
   color: var(--fnt-dark-clr);
-  text-shadow: 0px 0px 10px #fff;
+  max-width: 16em;
 }
 .lists__recommend__text-box h3 {
-  font-size: 1.8em;
+  font-size: 1.6em;
 }
 .lists__recommend__text-box p {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: bold;
 }
 .lists__recommend__buttons {
   display: flex;
-  gap: 1em;
+  gap: 0.5em;
   margin-top: 1em;
 }
 .lists__recommend__buttons button {
@@ -109,7 +120,7 @@ aside {
   padding: 0.5em 1em;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(207, 205, 205);
+  border: none;
   background-color: var(--primary-clr);
   border-radius: 4px;
   width: 6em;
@@ -118,7 +129,7 @@ aside {
   color: var(--bg-clr);
 }
 .lists__recommend__buttons button:hover {
-  border: 1px solid var(--point-clr);
+  filter: brightness(120%);
 }
 .lists__recommend__buttons img {
   -o-object-fit: cover;

@@ -1,0 +1,14 @@
+footer {
+  background-color: var(--primary-clr);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em 1em;
+  align-items: center;
+  text-align: center;
+}
+footer p {
+  max-width: 900px;
+  color: var(--fnt-white-clr);
+  font-size: 0.9em;
+}/*# sourceMappingURL=footer.css.map */

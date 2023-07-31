@@ -54,7 +54,6 @@ export default function Aside() {
       <section>
         <h3>Genre</h3>
         {getGenre.map(({ genreName, genreID }) => {
-          console.log(getGenreName, genreName);
           return (
             <button
               className={`${getGenreName === genreName && "activated"}`}
