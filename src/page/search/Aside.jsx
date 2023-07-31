@@ -20,10 +20,15 @@ export default function Aside() {
   const searchTerm = useDebounce(userQuery);
 
   useEffect(() => {
+    dispatch(movieListClear());
+  }, []);
+
+  useEffect(() => {
     // debounce is used to prevent web API overload
     if (searchTerm.trim() !== "") {
-      const URL = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
       dispatch(queryListClear());
+      console.log("ho");
+      const URL = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
       dispatch(
         requestFetch({ url: URL, currentPage: "&page=1&", isQuery: true })
       );
