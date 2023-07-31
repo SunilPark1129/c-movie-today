@@ -28,10 +28,13 @@ export default function MovieModal() {
         {/* front page */}
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             left: "50%",
             top: "50%",
             transform: "translate(-50%,-50%)",
+            background: "#fff",
+            padding: "2rem",
+            zIndex: "999",
           }}
         >
           <div onClick={closeClickHandler}>close</div>
@@ -40,7 +43,18 @@ export default function MovieModal() {
           </div>
         </div>
         {/* outside cover */}
-        <div></div>
+        <div
+          style={{
+            position: "fixed",
+            left: "0",
+            top: "0",
+            width: "100%",
+            height: "100%",
+            zIndex: "998",
+            background: "#3d3d3d94",
+          }}
+          onClick={closeClickHandler}
+        ></div>
       </div>
     );
   } else {
