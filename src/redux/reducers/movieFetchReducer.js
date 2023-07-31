@@ -7,7 +7,8 @@ import axios from "axios";
  * @param {boolean} isLoading - fetch loading
  * @param {boolean} error - error message
  * @param {[{movie: Object, page: number}]} lists - movie lists
- * @param {string[]} queries - titles for searched term
+ * @param {string[]} queries - title lists for searching term
+ * @param {string[]} history - title history for searched term
  */
 const initialState = {
   data: null,
@@ -15,6 +16,7 @@ const initialState = {
   error: null,
   lists: [],
   queries: [],
+  histories: [],
 };
 
 const API_KEY = "api_key=b0a4d245d5b20ec7da2f1eb0a7b47d89";
@@ -44,6 +46,14 @@ const fetchSlice = createSlice({
     queryListClear(state) {
       state.queries = [];
     },
+    historyListClear(state, action) {
+      state.histories = state.histories.filter(
+        (item) => item !== action.payload
+      );
+    },
+    historyAdd(state, action) {
+      state.histories = [...state.histories, action.payload];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(requestFetch.pending, (state) => {
@@ -70,4 +80,5 @@ const fetchSlice = createSlice({
 });
 
 export default fetchSlice.reducer;
-export const { movieListClear, queryListClear } = fetchSlice.actions;
+export const { movieListClear, queryListClear, historyListClear, historyAdd } =
+  fetchSlice.actions;

@@ -3,6 +3,8 @@ import {
   requestFetch,
   movieListClear,
   queryListClear,
+  historyListClear,
+  historyAdd,
 } from "../../redux/reducers/movieFetchReducer";
 import useDebounce from "../../hooks/useDebounce";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +14,7 @@ export default function Aside() {
   const dispatch = useDispatch();
 
   // get move list (limit: 5 items)
-  const { isLoading, queries } = useSelector(
+  const { isLoading, queries, histories } = useSelector(
     (state) => state.movieFetchReducer
   );
 
@@ -27,7 +29,6 @@ export default function Aside() {
     // debounce is used to prevent web API overload
     if (searchTerm.trim() !== "") {
       dispatch(queryListClear());
-      console.log("ho");
       const URL = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
       dispatch(
         requestFetch({ url: URL, currentPage: "&page=1&", isQuery: true })
@@ -49,15 +50,32 @@ export default function Aside() {
     setUserQuery("");
     dispatch(movieListClear());
     const URL = `/search/movie?query=${encodeURIComponent(title)}&`;
+    dispatch(historyAdd(title));
 
     // request another datas to display movie lists
     dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
+  }
+
+  function historyRemoveClickHandler(title) {
+    dispatch(historyListClear(title));
   }
 
   return (
     <aside>
       <label htmlFor="">Search</label>
       <input type="text" value={userQuery} onChange={queryChangeHandler} />
+      <div>
+        {histories.length !== 0
+          ? histories.map((title) => (
+              <div key={title}>
+                <p>{title}</p>
+                <button onClick={() => historyRemoveClickHandler(title)}>
+                  X
+                </button>
+              </div>
+            ))
+          : null}
+      </div>
       <div>
         {isLoading ? (
           <p>Loading . . .</p>
