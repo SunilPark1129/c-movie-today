@@ -4,6 +4,7 @@ export default function MovieRecommend({ lists }) {
   const [randomPage, setRandomPage] = useState(null);
 
   useEffect(() => {
+    setRandomPage(null);
     randomSelect();
   }, [lists]);
 
@@ -19,6 +20,7 @@ export default function MovieRecommend({ lists }) {
       }
     }
   }
+
   return (
     <div>
       {randomPage ? (

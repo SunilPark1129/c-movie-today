@@ -11,7 +11,7 @@ function ErrorMessage({ error }) {
 }
 
 // display movie lists
-function Lists({ movies, page }) {
+function Lists({ totalPage, movies, page }) {
   const dispatch = useDispatch();
   // get last movie element
   const lastRef = useRef(null);
@@ -21,12 +21,14 @@ function Lists({ movies, page }) {
 
   useEffect(() => {
     if (isVisible) {
-      dispatch(
-        requestFetch({
-          url: null,
-          currentPage: `&page=${page}&`,
-        })
-      );
+      if (totalPage >= page) {
+        dispatch(
+          requestFetch({
+            url: null,
+            currentPage: `&page=${page}&`,
+          })
+        );
+      }
     }
   }, [isVisible]);
 
@@ -60,7 +62,7 @@ function Lists({ movies, page }) {
 }
 
 export default function MovieLists() {
-  const { lists, error, isLoading } = useSelector(
+  const { data, lists, error, isLoading } = useSelector(
     (state) => state.movieFetchReducer
   );
 
@@ -77,6 +79,7 @@ export default function MovieLists() {
                 movies={movies}
                 page={lists[lists.length - 1].page + 1}
                 key={page}
+                totalPage={data.total_pages}
               />
             ))}
           </div>
