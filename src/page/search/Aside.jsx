@@ -45,12 +45,15 @@ export default function Aside() {
     setUserQuery(value);
   }
 
-  // title click
-  function queryClickHandler(title) {
+  // request Fetch
+  function queryFetch(title) {
+    console.log("title:", title);
+    const tempQuery = title;
+    console.log("temp:", tempQuery);
     setUserQuery("");
     dispatch(movieListClear());
-    const URL = `/search/movie?query=${encodeURIComponent(title)}&`;
-    dispatch(historyAdd(title));
+    const URL = `/search/movie?query=${encodeURIComponent(tempQuery)}&`;
+    dispatch(historyAdd(tempQuery));
 
     // request another datas to display movie lists
     dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
@@ -60,15 +63,27 @@ export default function Aside() {
     dispatch(historyListClear(title));
   }
 
+  function keyDownHandler(e) {
+    if (e.keyCode === 13) {
+      queryFetch(userQuery);
+    }
+  }
+
   return (
     <aside>
       <label htmlFor="">Search</label>
-      <input type="text" value={userQuery} onChange={queryChangeHandler} />
+      <input
+        type="text"
+        value={userQuery}
+        onChange={queryChangeHandler}
+        onKeyDown={keyDownHandler}
+      />
+      <button onClick={() => queryFetch(userQuery)}>submit</button>
       <div>
         {histories.length !== 0
           ? histories.map((title) => (
               <div key={title}>
-                <p>{title}</p>
+                <p onClick={() => queryFetch(title)}>{title}</p>
                 <button onClick={() => historyRemoveClickHandler(title)}>
                   X
                 </button>
@@ -83,7 +98,7 @@ export default function Aside() {
           queries.map(({ id, title }, idx) => {
             if (idx < 4) {
               return (
-                <p key={id} onClick={() => queryClickHandler(title)}>
+                <p key={id} onClick={() => queryFetch(title)}>
                   {title}
                 </p>
               );
