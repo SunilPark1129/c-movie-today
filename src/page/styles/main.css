@@ -79,9 +79,9 @@ aside {
   flex-wrap: wrap;
 }
 .lists__recommend {
+  position: relative;
   display: flex;
   width: 100%;
-  position: relative;
   height: 16em;
   justify-content: center;
   box-shadow: 0px 10px 6px -6px rgba(20, 20, 20, 0.527);
