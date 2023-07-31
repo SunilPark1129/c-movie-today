@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { requestFetch } from "../redux/reducers/movieFetchReducer";
 import Loading from "./Loading";
 import useObserver from "../hooks/useObserver";
+import MovieRecommend from "./MovieRecommend";
 
 // display error message
 function ErrorMessage({ error }) {
@@ -31,14 +32,24 @@ function Lists({ movies, page }) {
 
   // set ref in the last index of movie to set the IntersectionObserver
   return movies.map(
-    ({ id, title, poster_path, release_date, vote_average }, idx) => {
+    (
+      { id, title, poster_path, release_date, vote_average, backdrop_path },
+      idx
+    ) => {
       return (
         <div key={id} ref={idx === 19 ? lastRef : null}>
-          <img
-            src={"https://image.tmdb.org/t/p/w500/" + poster_path}
-            alt={title}
-            width="200"
-          />
+          {poster_path || backdrop_path ? (
+            <img
+              src={
+                "https://image.tmdb.org/t/p/w500/" +
+                (poster_path || backdrop_path)
+              }
+              alt={title}
+              width="200"
+            />
+          ) : (
+            <div>No image</div>
+          )}
           <p>{title}</p>
           <p>{release_date ? release_date.replace(/-/g, "/") : "??"}</p>
           <p>{vote_average}</p>
@@ -59,13 +70,16 @@ export default function MovieLists() {
         {error ? (
           <ErrorMessage error={error} />
         ) : (
-          lists.map(({ movies, page }) => (
-            <Lists
-              movies={movies}
-              page={lists[lists.length - 1].page + 1}
-              key={page}
-            />
-          ))
+          <div>
+            <MovieRecommend lists={lists} />
+            {lists.map(({ movies, page }) => (
+              <Lists
+                movies={movies}
+                page={lists[lists.length - 1].page + 1}
+                key={page}
+              />
+            ))}
+          </div>
         )}
         {isLoading ? <Loading /> : null}
       </div>
