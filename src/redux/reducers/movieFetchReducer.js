@@ -51,8 +51,31 @@ const fetchSlice = createSlice({
         (item) => item !== action.payload
       );
     },
-    historyAdd(state, action) {
-      state.histories = [...state.histories, action.payload];
+    historyAdd(state, { payload }) {
+      let hasTarget = false;
+
+      for (let c of state.histories) {
+        // check if the payload already includes in the array
+        if (c.toLowerCase().includes(payload.toLowerCase())) {
+          hasTarget = true;
+          break;
+        }
+      }
+
+      if (hasTarget) {
+        // take out the targeted index
+        const temp = state.histories.filter(
+          (title) => title.toLowerCase() !== payload.toLowerCase()
+        );
+        // push into front
+        temp.unshift(payload);
+        state.histories = [...temp];
+      } else {
+        // take out the last index if index is reached the limit
+        const temp = state.histories.filter((_, idx) => idx < 5);
+        temp.unshift(payload);
+        state.histories = [...temp];
+      }
     },
   },
   extraReducers: (builder) => {
@@ -63,8 +86,9 @@ const fetchSlice = createSlice({
       state.isLoading = false;
       state.data = action.payload.res;
       if (action.payload.isQuery) {
+        // take out the last index if index is reached the limit
         const temp = action.payload.res.results.filter((_, idx) => idx < 5);
-        state.queries = temp;
+        state.queries = [...temp];
       } else {
         state.lists = [
           ...state.lists,
