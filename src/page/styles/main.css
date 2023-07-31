@@ -217,7 +217,7 @@ aside {
 }
 .lists__item {
   display: flex;
-  flex: 1 1 20%;
+  flex: 0 0 20%;
   position: relative;
 }
 .lists__item img {
@@ -263,6 +263,11 @@ aside {
 }
 .lists__item:hover img {
   filter: brightness(30%);
+}
+
+.width-auto-fit {
+  height: auto;
+  flex: 1 1 10%;
 }
 
 @media (max-width: 1200px) {

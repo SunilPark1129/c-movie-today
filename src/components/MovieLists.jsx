@@ -28,6 +28,7 @@ function DisplayLists() {
         page={lists[lists.length - 1].page + 1}
         totalPage={data.total_pages}
       />
+      <div className="width-auto-fit"></div>
     </div>
   ));
 }
