@@ -50,14 +50,15 @@ function Lists({ movies, page }) {
 }
 
 export default function MovieLists() {
-  const { lists, error, isLoading } = useSelector(
-    (state) => state.movieFetchReducer
-  );
+  const { lists, error, isLoading } = useSelector((state) => {
+    // console.log(state);
+    return state.movieFetchReducer;
+  });
 
   return (
     <div>
       <div>
-        {error ? (
+        {/* {error ? (
           <ErrorMessage error={error} />
         ) : (
           lists.map(({ movies, page }) => (
@@ -67,7 +68,7 @@ export default function MovieLists() {
               key={page}
             />
           ))
-        )}
+        )} */}
         {isLoading ? <Loading /> : null}
       </div>
     </div>
