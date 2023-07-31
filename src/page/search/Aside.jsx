@@ -47,9 +47,7 @@ export default function Aside() {
 
   // request Fetch
   function queryFetch(title) {
-    console.log("title:", title);
     const tempQuery = title;
-    console.log("temp:", tempQuery);
     setUserQuery("");
     dispatch(movieListClear());
     const URL = `/search/movie?query=${encodeURIComponent(tempQuery)}&`;
