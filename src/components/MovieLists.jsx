@@ -1,13 +1,34 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { requestFetch } from "../redux/reducers/movieFetchReducer";
-import Loading from "./Loading";
+import { setMovie } from "../redux/reducers/selectedReducer";
 import useObserver from "../hooks/useObserver";
 import MovieRecommend from "./MovieRecommend";
+import MovieModal from "./MovieModal";
+import Loading from "./Loading";
 
 // display error message
-function ErrorMessage({ error }) {
-  return <p>Error Message: {error}</p>;
+function ErrorMessage() {
+  const { error } = useSelector((state) => state.movieFetchReducer);
+
+  if (error) {
+    return <p>Error Message: {error}</p>;
+  } else {
+    return null;
+  }
+}
+
+function DisplayLists() {
+  const { data, lists } = useSelector((state) => state.movieFetchReducer);
+
+  return lists.map(({ movies, page }) => (
+    <Lists
+      movies={movies}
+      page={lists[lists.length - 1].page + 1}
+      key={page}
+      totalPage={data.total_pages}
+    />
+  ));
 }
 
 // display movie lists
@@ -32,6 +53,10 @@ function Lists({ totalPage, movies, page }) {
     }
   }, [isVisible]);
 
+  function movieClickHandler(target) {
+    dispatch(setMovie(target));
+  }
+
   // set ref in the last index of movie to set the IntersectionObserver
   return movies.map(
     (
@@ -39,7 +64,11 @@ function Lists({ totalPage, movies, page }) {
       idx
     ) => {
       return (
-        <div key={id} ref={idx === 19 ? lastRef : null}>
+        <div
+          key={id}
+          ref={idx === 19 ? lastRef : null}
+          onClick={() => movieClickHandler(movies[idx])}
+        >
           {poster_path || backdrop_path ? (
             <img
               src={
@@ -62,30 +91,15 @@ function Lists({ totalPage, movies, page }) {
 }
 
 export default function MovieLists() {
-  const { data, lists, error, isLoading } = useSelector(
-    (state) => state.movieFetchReducer
-  );
-
   return (
     <div>
       <div>
-        {error ? (
-          <ErrorMessage error={error} />
-        ) : (
-          <div>
-            <MovieRecommend lists={lists} />
-            {lists.map(({ movies, page }) => (
-              <Lists
-                movies={movies}
-                page={lists[lists.length - 1].page + 1}
-                key={page}
-                totalPage={data.total_pages}
-              />
-            ))}
-          </div>
-        )}
-        {isLoading ? <Loading /> : null}
+        <MovieRecommend />
+        <DisplayLists />
+        <ErrorMessage />
+        <Loading />
       </div>
+      <MovieModal />
     </div>
   );
 }

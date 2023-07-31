@@ -1,5 +1,9 @@
-import React from "react";
-
+import { useSelector } from "react-redux";
 export default function Loading() {
-  return <div>Loading</div>;
+  const { isLoading } = useSelector((state) => state.movieFetchReducer);
+  if (isLoading) {
+    return <div>Loading</div>;
+  } else {
+    return null;
+  }
 }

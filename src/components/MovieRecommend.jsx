@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { requestFetch } from "../redux/reducers/movieFetchReducer";
+import { useSelector } from "react-redux";
+import Loading from "./Loading";
 
-export default function MovieRecommend({ lists }) {
+export default function MovieRecommend() {
   const [randomPage, setRandomPage] = useState(null);
+  const { lists, isLoading } = useSelector((state) => state.movieFetchReducer);
 
   useEffect(() => {
     setRandomPage(null);
@@ -23,7 +27,8 @@ export default function MovieRecommend({ lists }) {
 
   return (
     <div>
-      {randomPage ? (
+      <Loading />
+      {!isLoading && randomPage ? (
         randomPage.poster_path || randomPage.backdrop_path ? (
           <img
             src={
