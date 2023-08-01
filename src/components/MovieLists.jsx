@@ -9,10 +9,12 @@ import Loading from "./Loading";
 import ListEmpty from "./ListEmpty";
 import FetchError from "./FetchError";
 
+// display movie per page
 function DisplayLists() {
   const { data, lists } = useSelector((state) => state.movieFetchReducer);
 
   if (lists[0]?.movies.length !== 0) {
+    // making another components to find and set the ref into last element
     return lists.map(({ movies, page }) => (
       <div className="lists__content" key={page}>
         <Lists
@@ -27,7 +29,7 @@ function DisplayLists() {
   }
 }
 
-// display movie lists
+// display movie poster
 function Lists({ totalPage, movies, page }) {
   const dispatch = useDispatch();
   // get last movie element
@@ -90,15 +92,25 @@ function Lists({ totalPage, movies, page }) {
   );
 }
 
+// a component for displaying movie items
 export default function MovieLists() {
   return (
     <div className="lists">
       <div className="lists__display">
+        {/* display randmo moive item */}
         <MovieRecommend />
+
+        {/* display fetched movie items */}
         <DisplayLists />
+
+        {/* api error */}
         <FetchError />
+
+        {/* is loading */}
         <Loading />
       </div>
+
+      {/* display selected movie content */}
       <MovieModal />
 
       {/* edge radius border for styling */}
