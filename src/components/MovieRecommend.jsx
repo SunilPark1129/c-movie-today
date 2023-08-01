@@ -14,10 +14,13 @@ function DisplayRecommendation({ lists, isLoading }) {
   }, [lists]);
 
   // select random index
+  // random number from the page and the item in the page list
   function randomSelect() {
     if (lists.length !== 0) {
+      // get random number for page
       const tempPage = Math.floor(Math.random() * lists.length);
       if (lists[tempPage].movies.length !== 0) {
+        // get random number for item
         const tempItem = Math.floor(
           Math.random() * lists[tempPage].movies.length
         );
@@ -64,6 +67,7 @@ export default function MovieRecommend() {
     return state.movieFetchReducer;
   });
 
+  // if fetched item is empty or error, skip this component
   if (lists[0]?.movies.length !== 0 && !error) {
     return (
       <div className="lists__recommend">

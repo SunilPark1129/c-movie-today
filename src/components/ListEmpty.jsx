@@ -2,6 +2,7 @@ import React from "react";
 import imgEmpty from "../assets/empty.svg";
 import "./styles/empty.css";
 
+// if fetched item is empty, display this content
 export default function ListEmpty() {
   return (
     <div className="announce">
