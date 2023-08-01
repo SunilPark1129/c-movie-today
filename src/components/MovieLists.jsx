@@ -35,7 +35,8 @@ function Lists({ totalPage, movies, page }) {
   // get last movie element
   const lastRef = useRef(null);
 
-  // if scroll position is on last movie item become true
+  // IntersectionObserver has been used
+  // if scroll position is reached the last movie item, boolean true
   const isVisible = useObserver(lastRef, { threshold: 0.5 });
 
   useEffect(() => {
