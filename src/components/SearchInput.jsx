@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import useDebounce from "../hooks/useDebounce";
 import imgSearch from "../assets/search.svg";
 import "./styles/searchInput.css";
+import { useNavigate } from "react-router-dom";
 
 import {
   queryListClear,
@@ -19,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { useQueries } from "../hooks/useReducer";
 
 export default function SearchInput() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const containerRef = useRef(null);
   const [userQuery, setUserQuery] = useState("");
@@ -72,7 +74,10 @@ export default function SearchInput() {
   // request Fetch
   function queryFetch(title) {
     const tempQuery = title;
-    // clear all lists
+
+    navigate("/search");
+
+    // clear all stored states
     dispatch(movieListClear());
     dispatch(queryListClear());
 
@@ -81,7 +86,7 @@ export default function SearchInput() {
     // fetch
     dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
 
-    // add history in the state
+    // add history in the store
     dispatch(historyAdd(tempQuery));
   }
 
