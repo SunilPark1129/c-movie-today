@@ -1,10 +1,11 @@
 import React from "react";
 import { setMovie } from "../redux/reducers/selectedReducer";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useSelected } from "../hooks/useReducer";
 
 export default function MovieModal() {
   const dispatch = useDispatch();
-  const getMovie = useSelector((state) => state.selectedReducer.selectedMovie);
+  const { selectedMovie } = useSelected();
 
   // id,
   // genre_ids,
@@ -22,7 +23,7 @@ export default function MovieModal() {
     dispatch(setMovie(null));
   }
 
-  if (getMovie) {
+  if (selectedMovie) {
     return (
       <div>
         {/* front page */}
@@ -39,7 +40,7 @@ export default function MovieModal() {
         >
           <div onClick={closeClickHandler}>close</div>
           <div>
-            <h4>{getMovie.title}</h4>
+            <h4>{selectedMovie.title}</h4>
           </div>
         </div>
         {/* outside cover */}

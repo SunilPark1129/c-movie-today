@@ -1,5 +1,6 @@
 .header {
   background-color: var(--primary-clr);
+  z-index: 999;
 }
 
 nav {
@@ -26,8 +27,7 @@ nav {
     font-weight: bold;
   }
 
-  a,
-  p {
+  a {
     display: flex;
     color: var(--fnt-white-clr);
   }

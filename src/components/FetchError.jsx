@@ -1,11 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import imgEmpty from "../assets/empty.svg";
 import "./styles/empty.css";
+import { useLists } from "../hooks/useReducer";
 
 // if found an error during the fetch item, display this content
 export default function FetchError() {
-  const { error } = useSelector((state) => state.movieFetchReducer);
+  const { error } = useLists();
 
   if (error) {
     return (

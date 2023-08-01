@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { requestFetch } from "../redux/reducers/movieFetchReducer";
 import { setMovie } from "../redux/reducers/selectedReducer";
 import useObserver from "../hooks/useObserver";
@@ -9,9 +9,12 @@ import Loading from "./Loading";
 import ListEmpty from "./ListEmpty";
 import FetchError from "./FetchError";
 
+import { useLists } from "../hooks/useReducer";
+
 // display movie per page
 function DisplayLists() {
-  const { data, lists } = useSelector((state) => state.movieFetchReducer);
+  // performance checked
+  const { data, lists } = useLists();
 
   if (lists[0]?.movies.length !== 0) {
     // making another components to find and set the ref into last element

@@ -1,5 +1,6 @@
 .header {
   background-color: var(--primary-clr);
+  z-index: 999;
 }
 
 nav {
@@ -23,8 +24,7 @@ nav ul {
   gap: 1em;
   font-weight: bold;
 }
-nav a,
-nav p {
+nav a {
   display: flex;
   color: var(--fnt-white-clr);
 }

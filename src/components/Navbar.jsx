@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/main_logo.png";
+import SearchInput from "./SearchInput";
 
 const labels = [
   { label: "Home", path: "/" },
@@ -35,7 +36,7 @@ export default function Navbar() {
           </ul>
         </div>
         <div>
-          <p>search</p>
+          <SearchInput />
           <p>color mode</p>
         </div>
       </nav>
