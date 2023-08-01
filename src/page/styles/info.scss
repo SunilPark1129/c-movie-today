@@ -1,0 +1,56 @@
+.info {
+  flex-direction: column;
+  align-items: center;
+  padding: 3em 1em;
+  gap: 4em;
+
+  header {
+    text-align: center;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    max-width: 60em;
+
+    h3 {
+      text-align: center;
+      margin: 1em auto;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+
+      div:not(.info__img-box) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+      }
+    }
+  }
+
+  &__contact {
+    p {
+      text-align: center;
+      margin: auto;
+    }
+  }
+
+  &__img-box {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin: auto;
+  }
+
+  .dot {
+    margin: auto;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: var(--primary-clr);
+    border-radius: 50%;
+  }
+}
