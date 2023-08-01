@@ -6,6 +6,7 @@ import useObserver from "../hooks/useObserver";
 import MovieRecommend from "./MovieRecommend";
 import MovieModal from "./MovieModal";
 import Loading from "./Loading";
+import ListEmpty from "./ListEmpty";
 
 // display error message
 function ErrorMessage() {
@@ -21,16 +22,19 @@ function ErrorMessage() {
 function DisplayLists() {
   const { data, lists } = useSelector((state) => state.movieFetchReducer);
 
-  return lists.map(({ movies, page }) => (
-    <div className="lists__content" key={page}>
-      <Lists
-        movies={movies}
-        page={lists[lists.length - 1].page + 1}
-        totalPage={data.total_pages}
-      />
-      <div className="width-auto-fit"></div>
-    </div>
-  ));
+  if (lists[0]?.movies.length !== 0) {
+    return lists.map(({ movies, page }) => (
+      <div className="lists__content" key={page}>
+        <Lists
+          movies={movies}
+          page={lists[lists.length - 1].page + 1}
+          totalPage={data.total_pages}
+        />
+      </div>
+    ));
+  } else {
+    return <ListEmpty />;
+  }
 }
 
 // display movie lists

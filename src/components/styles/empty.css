@@ -1,0 +1,15 @@
+.list-empty {
+  display: flex;
+  width: 100%;
+  padding: 4em 0;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: auto;
+}
+.list-empty img {
+  width: 18em;
+}
+.list-empty__text-box {
+  padding: 2em;
+}/*# sourceMappingURL=empty.css.map */

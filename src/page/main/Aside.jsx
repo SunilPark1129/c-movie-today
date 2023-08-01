@@ -51,6 +51,7 @@ export default function Aside() {
           </button>
         ))}
       </section>
+      <div className="dot"></div>
       <section>
         <h3>Genre</h3>
         {getGenre.map(({ genreName, genreID }) => {

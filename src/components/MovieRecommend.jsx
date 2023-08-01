@@ -61,10 +61,18 @@ function DisplayRecommendation() {
 }
 
 export default function MovieRecommend() {
-  return (
-    <div className="lists__recommend">
-      <Loading />
-      <DisplayRecommendation />
-    </div>
-  );
+  const lists = useSelector((state) => {
+    return state.movieFetchReducer.lists[0]?.movies;
+  });
+
+  if (lists?.length !== 0) {
+    return (
+      <div className="lists__recommend">
+        <Loading />
+        <DisplayRecommendation />
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
