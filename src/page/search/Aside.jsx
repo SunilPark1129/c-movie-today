@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   requestFetch,
   movieListClear,
@@ -14,12 +14,16 @@ import { useDispatch, useSelector } from "react-redux";
 import imgSearch from "../../assets/search.svg";
 import imgClose from "../../assets/close.svg";
 
+let a;
+
 export default function Aside() {
   const [userQuery, setUserQuery] = useState("");
+  const [isFocusing, setIsFocusing] = useState(false);
   const dispatch = useDispatch();
+  const containerRef = useRef(null);
 
   // get move list (limit: 5 items)
-  const { isLoading, queries, histories } = useSelector(
+  const { queries, histories } = useSelector(
     (state) => state.queryFetchReducer
   );
 
@@ -61,6 +65,7 @@ export default function Aside() {
     dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
   }
 
+  // remove targeted history
   function historyRemoveClickHandler(title) {
     dispatch(historyListClear(title));
   }
@@ -71,6 +76,32 @@ export default function Aside() {
     }
   }
 
+  function handleDocumentClick(e) {
+    if (containerRef.current && !containerRef.current.contains(e.target)) {
+      // when losing the focus, hiding the query list div
+      setIsFocusing(false);
+    }
+  }
+
+  /* 
+    useEffect for hiding the query lists div when clicking the 
+    outside of the content (execpt for input tag and query lists div)
+  */
+  useEffect(() => {
+    // when component is mounted add click eventhandler in document
+    document.addEventListener("click", handleDocumentClick);
+
+    // when component is unmounted remove click eventhandler from document
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
+  function queryClickHandler(title) {
+    queryFetch(title);
+    setIsFocusing(false);
+  }
+
   return (
     <aside>
       <h3>Search</h3>
@@ -78,12 +109,32 @@ export default function Aside() {
 
       {/* query input */}
       <div className="search__search-box">
-        <input
-          type="text"
-          value={userQuery}
-          onChange={queryChangeHandler}
-          onKeyDown={keyDownHandler}
-        />
+        <div className="search__input-box" ref={containerRef}>
+          <input
+            type="text"
+            value={userQuery}
+            onChange={queryChangeHandler}
+            onKeyDown={keyDownHandler}
+            onFocus={() => setIsFocusing(true)}
+          />
+
+          {/* query lists */}
+          <div className="search__query-lists">
+            {isFocusing && queries.length !== 0
+              ? queries.map(({ id, title }, idx) => {
+                  if (idx < 4) {
+                    return (
+                      <p key={id} onClick={() => queryClickHandler(title)}>
+                        {title}
+                      </p>
+                    );
+                  }
+                })
+              : null}
+          </div>
+        </div>
+
+        {/* submit to request for fetching the current query string */}
         <button onClick={() => queryFetch(userQuery)}>
           <img src={imgSearch} alt="saerch" />
         </button>
@@ -101,21 +152,6 @@ export default function Aside() {
               </div>
             ))
           : null}
-      </div>
-      <div>
-        {isLoading ? (
-          <p>Loading . . .</p>
-        ) : queries.length !== 0 ? (
-          queries.map(({ id, title }, idx) => {
-            if (idx < 4) {
-              return (
-                <p key={id} onClick={() => queryFetch(title)}>
-                  {title}
-                </p>
-              );
-            }
-          })
-        ) : null}
       </div>
     </aside>
   );

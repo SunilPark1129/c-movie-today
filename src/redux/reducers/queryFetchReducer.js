@@ -9,7 +9,6 @@ import axios from "axios";
  * @param {string[]} history - title history for searched term
  */
 const initialState = {
-  isLoading: false,
   error: null,
   queries: [],
   histories: [],
@@ -37,7 +36,6 @@ const queryFetchSlice = createSlice({
     queryListClear(state) {
       state.queries = [];
       state.error = null;
-      state.isLoading = false;
     },
     historyListClear(state, action) {
       state.histories = state.histories.filter(
@@ -72,9 +70,6 @@ const queryFetchSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(requestQueryFetch.pending, (state) => {
-      state.isLoading = true;
-    });
     builder.addCase(requestQueryFetch.fulfilled, (state, action) => {
       state.isLoading = false;
       const temp = action.payload.res.results.filter((_, idx) => idx < 5);

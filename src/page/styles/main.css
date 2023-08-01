@@ -25,20 +25,47 @@ aside .dot {
   border-radius: 50%;
 }
 
+.search__focus {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+}
 .search__search-box {
   display: flex;
   gap: 0.5em;
   align-items: center;
 }
-.search__search-box input {
+.search__input-box {
   width: 100%;
+  position: relative;
+}
+.search__input-box input {
+  background-color: var(--bg-clr);
   padding: 0.5em;
+  width: 100%;
+  height: 100%;
   border: none;
   outline: none;
-  border-radius: 4px;
+}
+.search__query-lists {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+}
+.search__query-lists p {
+  color: var(--fnt-reg-clr);
+  padding: 0.2em 0.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
   background-color: var(--bg-clr);
 }
-.search__search-box input:focus {
+.search__query-lists p:hover {
   background-color: #fff;
 }
 .search__history {
