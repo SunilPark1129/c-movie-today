@@ -23,7 +23,7 @@ export default function Aside() {
   const containerRef = useRef(null);
 
   // get move list (limit: 5 items)
-  const { queries, histories } = useSelector(
+  const { queries, histories, error } = useSelector(
     (state) => state.queryFetchReducer
   );
 
@@ -120,6 +120,9 @@ export default function Aside() {
 
           {/* query lists */}
           <div className="search__query-lists">
+            {error ? (
+              <p style={{ pointerEvents: "none" }}>Fetch Error...</p>
+            ) : null}
             {isFocusing && queries.length !== 0
               ? queries.map(({ id, title }, idx) => {
                   if (idx < 4) {
