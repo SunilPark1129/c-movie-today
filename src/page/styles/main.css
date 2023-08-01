@@ -24,9 +24,9 @@ aside .dot {
   border-radius: 50%;
 }
 
-.search-front-page {
+.page-announce {
   display: flex;
-  padding: 10em 2em;
+  padding: 10em 1em;
   width: 100%;
   display: flex;
   align-items: center;
@@ -34,26 +34,32 @@ aside .dot {
   flex-wrap: wrap;
   gap: 2em;
 }
-.search-front-page__text {
+.page-announce__text {
   display: flex;
   flex-direction: column;
   gap: 5em;
-  justify-content: space-between;
+  padding: 2em;
+  max-width: 40em;
 }
-.search-front-page__text h3 {
+.page-announce__text h3 {
   font-size: 3em;
 }
-.search-front-page__text li {
+.page-announce__text ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.page-announce__text li {
   font-size: 1.1em;
-  line-height: 1.6em;
   list-style-type: disc;
 }
-.search-front-page__text li span {
+.page-announce__text li span {
   color: var(--point-clr);
   font-weight: bold;
 }
-.search-front-page img {
-  width: 24em;
+.page-announce img {
+  flex: 0 1 30%;
+  width: 22em;
   animation: 2s ani-updown ease-in-out infinite alternate;
 }
 
@@ -72,6 +78,11 @@ aside .dot {
   gap: 0.5em;
 }
 .search__history p {
+  color: var(--fnt-white-clr);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
   width: 100%;
   cursor: pointer;
 }
