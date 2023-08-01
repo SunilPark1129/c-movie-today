@@ -357,6 +357,6 @@ aside .dot {
 @media (max-width: 1200px) {
   .lists__item {
     display: flex;
-    flex: 1 1 25%;
+    flex: 0 1 25%;
   }
 }/*# sourceMappingURL=main.css.map */
