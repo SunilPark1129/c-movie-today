@@ -67,15 +67,17 @@ export default function MovieRecommend() {
     return state.movieFetchReducer;
   });
 
-  // if fetched item is empty or error, skip this component
-  if (lists[0]?.movies.length !== 0 && !error) {
-    return (
-      <div className="lists__recommend">
-        <Loading />
-        <DisplayRecommendation lists={lists} isLoading={isLoading} />
-      </div>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <div
+      className={`lists__recommend ${
+        lists[0] &&
+        lists[0].movies.length !== 0 &&
+        !error &&
+        "lists__recommend--not-empty"
+      }`}
+    >
+      <Loading />
+      <DisplayRecommendation lists={lists} isLoading={isLoading} />
+    </div>
+  );
 }
