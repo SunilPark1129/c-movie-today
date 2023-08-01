@@ -42,6 +42,7 @@ const fetchSlice = createSlice({
       state.data = null;
       state.lists = [];
       state.queries = [];
+      state.error = null;
     },
     queryListClear(state) {
       state.queries = [];

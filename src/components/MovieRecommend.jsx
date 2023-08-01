@@ -4,9 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Loading from "./Loading";
 import imgRefresh from "../assets/refresh.svg";
 
-function DisplayRecommendation() {
+function DisplayRecommendation({ lists, isLoading }) {
   const [randomPage, setRandomPage] = useState(null);
-  const { lists, isLoading } = useSelector((state) => state.movieFetchReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,15 +60,15 @@ function DisplayRecommendation() {
 }
 
 export default function MovieRecommend() {
-  const lists = useSelector((state) => {
-    return state.movieFetchReducer.lists[0]?.movies;
+  const { lists, isLoading, error } = useSelector((state) => {
+    return state.movieFetchReducer;
   });
 
-  if (lists?.length !== 0) {
+  if (lists[0]?.movies.length !== 0 && !error) {
     return (
       <div className="lists__recommend">
         <Loading />
-        <DisplayRecommendation />
+        <DisplayRecommendation lists={lists} isLoading={isLoading} />
       </div>
     );
   } else {
