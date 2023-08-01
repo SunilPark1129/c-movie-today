@@ -68,6 +68,7 @@ aside {
     animation: 2s ani-updown ease-in-out infinite alternate;
   }
 }
+
 @keyframes ani-updown {
   100% {
     transform: translateY(-1rem);
@@ -203,13 +204,11 @@ aside {
       gap: 0.5em;
       flex-direction: column;
       z-index: 9;
-      background-color: #ecececaf;
-      border-radius: 8px;
-      padding: 1em;
 
       h3 {
         color: var(--fnt-dark-clr);
         font-size: 1.2em;
+        text-shadow: 0px 0px 10px white;
       }
       p {
         max-width: 16em;

@@ -186,13 +186,11 @@ aside .dot {
   gap: 0.5em;
   flex-direction: column;
   z-index: 9;
-  background-color: rgba(236, 236, 236, 0.6862745098);
-  border-radius: 8px;
-  padding: 1em;
 }
 .lists__recommend__text-box h3 {
   color: var(--fnt-dark-clr);
   font-size: 1.2em;
+  text-shadow: 0px 0px 10px white;
 }
 .lists__recommend__text-box p {
   max-width: 16em;
