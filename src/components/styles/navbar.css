@@ -28,6 +28,7 @@ nav p {
   display: flex;
   color: var(--fnt-white-clr);
 }
-nav a:hover {
+nav a:hover,
+nav .active {
   color: var(--point-clr);
 }/*# sourceMappingURL=navbar.css.map */

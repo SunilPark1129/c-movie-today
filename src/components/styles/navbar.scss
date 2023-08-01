@@ -32,7 +32,8 @@ nav {
     color: var(--fnt-white-clr);
   }
 
-  a:hover {
+  a:hover,
+  .active {
     color: var(--point-clr);
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/navbar.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/main_logo.png";
 
 const labels = [
@@ -21,7 +21,14 @@ export default function Navbar() {
             {labels.map(({ label, path }) => {
               return (
                 <li key={label}>
-                  <Link to={path}>{label}</Link>
+                  <NavLink
+                    to={path}
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "active" : ""
+                    }
+                  >
+                    {label}
+                  </NavLink>
                 </li>
               );
             })}
