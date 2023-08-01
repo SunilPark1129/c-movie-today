@@ -11,9 +11,15 @@ export function FetchError() {
       <div className="apage-announce__text">
         <h3>Fetch Error</h3>
         <ul>
-          <li>There is something wrong with the connection.</li>
-          <li>You can try later.</li>
-          <li>Error Message: {error}</li>
+          <li>
+            There is something wrong with the <span>connection</span>.
+          </li>
+          <li>
+            You can <span>try later</span>.
+          </li>
+          <li>
+            <span>Error Message</span>: {error}
+          </li>
         </ul>
       </div>
       <img src={imgEmpty} alt="man is thinking" />
@@ -29,11 +35,15 @@ export function ListEmpty() {
         <h3>Empty</h3>
         <ul>
           <li>
-            We tried to find the movie, but there was no relevant movie
-            available.
+            We tried to find the movie, but there was{" "}
+            <span>no relevant movie</span> available.
           </li>
-          <li>Maybe, try to find the typo.</li>
-          <li>Contact us if you have any question.</li>
+          <li>
+            Maybe, try to find the <span>typo</span>.
+          </li>
+          <li>
+            <span>Contact us</span> if you have any question.
+          </li>
         </ul>
       </div>
       <img src={imgEmpty} alt="man is thinking" />
@@ -57,11 +67,13 @@ export function SearchFrontPage() {
             when searching for titles.
           </li>
           <li>
-            A searched history is generated at the bottom of the search bar,
-            allowing you to revisit the searched content at any time.
+            A <span>searched history</span> is generated at the bottom of the
+            search bar, allowing you to revisit the searched content at any
+            time.
           </li>
           <li>
-            The history record will disappear once you leave this website.
+            The history record will <span>disappear</span> once you leave this
+            website.
           </li>
           <li>
             You can also search in <span>your language</span> other than English
