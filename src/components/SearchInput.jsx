@@ -22,16 +22,19 @@ export default function SearchInput() {
   const dispatch = useDispatch();
   const containerRef = useRef(null);
   const [userQuery, setUserQuery] = useState("");
+
+  // check either currently user is focusing in input or not
   const [isFocusing, setIsFocusing] = useState(false);
 
   const { queries, error } = useQueries();
 
-  // a new string after debounced user query
+  // everytime rerender when changing the input state
+  // debounce is used to prevent web API overload
   const searchTerm = useDebounce(userQuery);
 
   /* 
-    useEffect for hiding the query lists div when clicking the 
-    outside of the content (execpt for input tag and query lists div)
+    useEffect for hiding the query lists when clicking the 
+    outside of the content (execpt for the input tag and the query list)
   */
   useEffect(() => {
     // when component is mounted add click eventhandler in document
@@ -46,16 +49,16 @@ export default function SearchInput() {
   // when clicking the doucment
   function handleDocumentClick(e) {
     if (containerRef.current && !containerRef.current.contains(e.target)) {
-      // when losing the focus, hiding the query list div
+      // when losing the focus, hiding the query list
       setIsFocusing(false);
     }
   }
 
-  // request query lists with user input
+  // request the query list
+  // searchTerm = has been used the debounce with user input
   useEffect(() => {
     if (searchTerm)
       if (searchTerm.trim() !== "") {
-        // debounce is used to prevent web API overload
         dispatch(queryListClear());
         const URL = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
         dispatch(requestQueryFetch({ url: URL, currentPage: "&page=1&" }));
@@ -73,7 +76,6 @@ export default function SearchInput() {
     dispatch(movieListClear());
     dispatch(queryListClear());
 
-    // set URL useing with user input
     const URL = `/search/movie?query=${encodeURIComponent(tempQuery)}&`;
 
     // fetch
@@ -95,6 +97,7 @@ export default function SearchInput() {
     }
   }
 
+  // when clicking the p tag in the query list
   function queryClickHandler(title) {
     queryFetch(title);
     setIsFocusing(false);
