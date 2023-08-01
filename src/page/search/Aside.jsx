@@ -8,6 +8,8 @@ import {
 } from "../../redux/reducers/movieFetchReducer";
 import useDebounce from "../../hooks/useDebounce";
 import { useDispatch, useSelector } from "react-redux";
+import imgSearch from "../../assets/search.svg";
+import imgClose from "../../assets/close.svg";
 
 export default function Aside() {
   const [userQuery, setUserQuery] = useState("");
@@ -69,21 +71,30 @@ export default function Aside() {
 
   return (
     <aside>
-      <label htmlFor="">Search</label>
-      <input
-        type="text"
-        value={userQuery}
-        onChange={queryChangeHandler}
-        onKeyDown={keyDownHandler}
-      />
-      <button onClick={() => queryFetch(userQuery)}>submit</button>
-      <div>
+      <h3>Search</h3>
+      <div className="dot"></div>
+
+      {/* query input */}
+      <div className="search__search-box">
+        <input
+          type="text"
+          value={userQuery}
+          onChange={queryChangeHandler}
+          onKeyDown={keyDownHandler}
+        />
+        <button onClick={() => queryFetch(userQuery)}>
+          <img src={imgSearch} alt="saerch" />
+        </button>
+      </div>
+
+      {/* history lists */}
+      <div className="search__history">
         {histories.length !== 0
           ? histories.map((title) => (
-              <div key={title}>
+              <div className="search__history__content" key={title}>
                 <p onClick={() => queryFetch(title)}>{title}</p>
                 <button onClick={() => historyRemoveClickHandler(title)}>
-                  X
+                  <img src={imgClose} alt="close" />
                 </button>
               </div>
             ))

@@ -5,7 +5,7 @@ import "../styles/main.css";
 
 export default function Search() {
   return (
-    <main>
+    <main className="search">
       <Aside />
       <MovieLists />
     </main>

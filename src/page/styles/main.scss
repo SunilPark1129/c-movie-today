@@ -9,6 +9,15 @@ aside {
   width: 100%;
   background-color: var(--primary-clr);
   z-index: 2;
+  padding: 1em;
+  gap: 2em;
+
+  h3,
+  p {
+    text-align: center;
+    color: var(--fnt-white-clr);
+  }
+
   .dot {
     width: 0.5em;
     height: 0.5em;
@@ -18,16 +27,61 @@ aside {
   }
 }
 
+.search {
+  &__search-box {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    input {
+      width: 100%;
+      padding: 0.5em;
+      border: none;
+      outline: none;
+      border-radius: 4px;
+      background-color: var(--bg-clr);
+      &:focus {
+        background-color: #fff;
+      }
+    }
+  }
+  &__history {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    &__content {
+      display: flex;
+      gap: 0.5em;
+    }
+    p {
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+  aside {
+    button {
+      width: 2em;
+      height: 2em;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      background-color: var(--bg-clr);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        outline: 2px solid var(--point-clr);
+      }
+    }
+    img {
+      width: 1.3em;
+      height: 1.3em;
+    }
+  }
+}
+
 .main {
   aside {
-    padding: 1em;
-    gap: 2em;
-
-    h3 {
-      text-align: center;
-      color: var(--fnt-white-clr);
-    }
-
     section {
       display: flex;
       gap: 0.8em;
@@ -91,7 +145,6 @@ aside {
   &__display {
     display: flex;
     flex-wrap: wrap;
-    min-height: 100vh;
   }
 
   &__recommend {
@@ -114,17 +167,16 @@ aside {
       border-radius: 8px;
       padding: 1em;
 
-      h3,
-      p {
-        color: var(--fnt-dark-clr);
-        max-width: 16em;
-      }
       h3 {
-        font-size: 1.6em;
+        color: var(--fnt-dark-clr);
+        font-size: 1.2em;
       }
       p {
-        font-size: 1em;
-        font-weight: bold;
+        max-width: 16em;
+        color: var(--fnt-white-clr);
+        font-size: 1.4em;
+        font-weight: bolder;
+        text-shadow: 0px 0px 10px black;
       }
     }
 
