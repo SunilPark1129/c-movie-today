@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { setMovie } from "../redux/reducers/selectedReducer";
 import { useDispatch } from "react-redux";
-import Loading from "./Loading";
 import imgRefresh from "../assets/refresh.svg";
 import { useLists } from "../hooks/useReducer";
 import NoPoster from "./NoPoster";
 
-function DisplayRecommendation({ lists, isLoading }) {}
-
 export default function MovieRecommend() {
   const [randomPage, setRandomPage] = useState(null);
-  // performance checked
+
   const { lists, isLoading, error } = useLists();
 
   useEffect(() => {

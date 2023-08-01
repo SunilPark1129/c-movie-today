@@ -9,11 +9,10 @@ import Loading from "./Loading";
 import ListEmpty from "./ListEmpty";
 import FetchError from "./FetchError";
 
-import { useLists } from "../hooks/useReducer";
+import { useLists, useSelected } from "../hooks/useReducer";
 
 // display movie per page
 function DisplayLists() {
-  // performance checked
   const { data, lists } = useLists();
 
   if (lists[0]?.movies.length !== 0) {
@@ -98,24 +97,29 @@ function Lists({ totalPage, movies, page }) {
 
 // a component for displaying movie items
 export default function MovieLists() {
+  const { lists, isLoading, error } = useLists();
+  const { selectedMovie } = useSelected();
+
   return (
     <div className="lists">
       <div className="lists__display">
-        {/* display randmo moive item */}
-        <MovieRecommend />
-
         {/* display fetched movie items */}
-        <DisplayLists />
+        {!error && lists.length !== 0 && (
+          <>
+            <MovieRecommend />
+            <DisplayLists />
+          </>
+        )}
 
-        {/* api error */}
-        <FetchError />
+        {/* fetch error */}
+        {error && <FetchError />}
 
         {/* is loading */}
-        <Loading />
+        {isLoading && <Loading />}
       </div>
 
       {/* display selected movie content */}
-      <MovieModal />
+      {selectedMovie && <MovieModal />}
 
       {/* edge radius border for styling */}
       <div className="border">
