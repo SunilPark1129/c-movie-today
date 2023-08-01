@@ -94,13 +94,34 @@ function Lists({ totalPage, movies, page }) {
   );
 }
 
+// header for movie lists
+function ListHeader() {
+  const { data } = useLists();
+  let nums = data.total_results;
+  let movie = "movies";
+  if (nums > 10000) {
+    nums = "10000+";
+  }
+  if (nums <= 1) {
+    movie = "movie";
+  }
+  return (
+    <header className="lists__header">
+      <h3>MOVIES</h3>
+      <p>
+        We have found <span>{nums}</span> {movie}
+      </p>
+    </header>
+  );
+}
+
 // a component for displaying movie items
 export default function MovieLists() {
   const { lists, isLoading, error } = useLists();
   const { selectedMovie, currentLocation } = useSelected();
 
   return (
-    <div className="lists">
+    <article className="lists">
       <div className="lists__display">
         {!error &&
           lists.length === 0 &&
@@ -110,6 +131,7 @@ export default function MovieLists() {
         {/* display fetched movie items */}
         {!error && lists.length !== 0 && (
           <>
+            <ListHeader />
             <MovieRecommend />
             <DisplayLists />
           </>
@@ -130,6 +152,6 @@ export default function MovieLists() {
         <div></div>
         <div></div>
       </div>
-    </div>
+    </article>
   );
 }
