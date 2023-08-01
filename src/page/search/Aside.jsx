@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import {
   requestFetch,
   movieListClear,
+} from "../../redux/reducers/movieFetchReducer";
+import {
+  requestQueryFetch,
   queryListClear,
   historyListClear,
   historyAdd,
-} from "../../redux/reducers/movieFetchReducer";
+} from "../../redux/reducers/queryFetchReducer";
 import useDebounce from "../../hooks/useDebounce";
 import { useDispatch, useSelector } from "react-redux";
 import imgSearch from "../../assets/search.svg";
@@ -17,7 +20,7 @@ export default function Aside() {
 
   // get move list (limit: 5 items)
   const { isLoading, queries, histories } = useSelector(
-    (state) => state.movieFetchReducer
+    (state) => state.queryFetchReducer
   );
 
   // a new string after debounced user query
@@ -32,9 +35,7 @@ export default function Aside() {
     if (searchTerm.trim() !== "") {
       dispatch(queryListClear());
       const URL = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
-      dispatch(
-        requestFetch({ url: URL, currentPage: "&page=1&", isQuery: true })
-      );
+      dispatch(requestQueryFetch({ url: URL, currentPage: "&page=1&" }));
     } else {
       // clear query when search term is empty
       dispatch(queryListClear());
@@ -52,6 +53,7 @@ export default function Aside() {
     const tempQuery = title;
     setUserQuery("");
     dispatch(movieListClear());
+    dispatch(queryListClear());
     const URL = `/search/movie?query=${encodeURIComponent(tempQuery)}&`;
     dispatch(historyAdd(tempQuery));
 
