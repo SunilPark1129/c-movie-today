@@ -24,6 +24,44 @@ aside .dot {
   border-radius: 50%;
 }
 
+.search-front-page {
+  display: flex;
+  padding: 10em 2em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+.search-front-page__text {
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+  justify-content: space-between;
+}
+.search-front-page__text h3 {
+  font-size: 3em;
+}
+.search-front-page__text li {
+  font-size: 1.1em;
+  line-height: 1.6em;
+  list-style-type: disc;
+}
+.search-front-page__text li span {
+  color: var(--point-clr);
+  font-weight: bold;
+}
+.search-front-page img {
+  width: 24em;
+  animation: 2s ani-updown ease-in-out infinite alternate;
+}
+
+@keyframes ani-updown {
+  100% {
+    transform: translateY(-1rem);
+  }
+}
 .search__history {
   display: flex;
   flex-direction: column;

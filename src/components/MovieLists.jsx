@@ -8,6 +8,7 @@ import MovieModal from "./MovieModal";
 import Loading from "./Loading";
 import ListEmpty from "./ListEmpty";
 import FetchError from "./FetchError";
+import imgPopcorn from "../assets/popcorn.svg";
 
 import { useLists, useSelected } from "../hooks/useReducer";
 
@@ -95,14 +96,44 @@ function Lists({ totalPage, movies, page }) {
   );
 }
 
+function SearchFrontPage() {
+  return (
+    <article className="search-front-page">
+      <div className="search-front-page__text">
+        <h3>Search</h3>
+        <ul>
+          <li>
+            You can <span>quickly</span> and <span>easily</span> search for
+            movie titles.
+          </li>
+          <li>
+            We have provided assistance with <span>related search terms</span>{" "}
+            when searching for titles.
+          </li>
+          <li>
+            You can also search in <span>your language</span> other than English
+            as well.
+          </li>
+        </ul>
+      </div>
+      <img src={imgPopcorn} alt="popcorn" />
+    </article>
+  );
+}
+
 // a component for displaying movie items
 export default function MovieLists() {
   const { lists, isLoading, error } = useLists();
-  const { selectedMovie } = useSelected();
+  const { selectedMovie, currentLocation } = useSelected();
 
   return (
     <div className="lists">
       <div className="lists__display">
+        {!error &&
+          lists.length === 0 &&
+          !isLoading &&
+          currentLocation === "search" && <SearchFrontPage />}
+
         {/* display fetched movie items */}
         {!error && lists.length !== 0 && (
           <>

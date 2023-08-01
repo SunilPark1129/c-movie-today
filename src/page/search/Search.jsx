@@ -4,6 +4,7 @@ import MovieLists from "../../components/MovieLists";
 import "../styles/main.css";
 import { useDispatch } from "react-redux";
 import { movieListClear } from "../../redux/reducers/movieFetchReducer";
+import { setNavigate } from "../../redux/reducers/selectedReducer";
 
 export default function Search() {
   const dispatch = useDispatch();
@@ -11,7 +12,10 @@ export default function Search() {
   // clear all lists when user entered Search page
   useEffect(() => {
     dispatch(movieListClear());
+    dispatch(setNavigate("search"));
   }, []);
+
+  console.log("render");
 
   return (
     <main className="search">
