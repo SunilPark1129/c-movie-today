@@ -1,4 +1,4 @@
-.list-empty {
+.announce {
   display: flex;
   width: 100%;
   padding: 4em 0;
@@ -7,9 +7,9 @@
   flex-wrap: wrap;
   margin: auto;
 }
-.list-empty img {
+.announce img {
   width: 18em;
 }
-.list-empty__text-box {
+.announce__text-box {
   padding: 2em;
 }/*# sourceMappingURL=empty.css.map */

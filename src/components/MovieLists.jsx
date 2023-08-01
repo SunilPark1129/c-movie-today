@@ -7,17 +7,7 @@ import MovieRecommend from "./MovieRecommend";
 import MovieModal from "./MovieModal";
 import Loading from "./Loading";
 import ListEmpty from "./ListEmpty";
-
-// display error message
-function ErrorMessage() {
-  const { error } = useSelector((state) => state.movieFetchReducer);
-
-  if (error) {
-    return <p>Error Message: {error}</p>;
-  } else {
-    return null;
-  }
-}
+import FetchError from "./FetchError";
 
 function DisplayLists() {
   const { data, lists } = useSelector((state) => state.movieFetchReducer);
@@ -106,7 +96,7 @@ export default function MovieLists() {
       <div className="lists__display">
         <MovieRecommend />
         <DisplayLists />
-        <ErrorMessage />
+        <FetchError />
         <Loading />
       </div>
       <MovieModal />

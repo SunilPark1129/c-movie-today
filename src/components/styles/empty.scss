@@ -1,7 +1,6 @@
-.list-empty {
+.announce {
   display: flex;
   width: 100%;
-  //   min-height: 40em;
   padding: 4em 0;
   justify-content: center;
   align-items: center;
@@ -10,17 +9,9 @@
 
   img {
     width: 18em;
-    // flex: 0 1 30%;
-    // margin: auto;
   }
 
   &__text-box {
     padding: 2em;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // margin-top: auto;
-    // flex: 0 0 30%;
-    // margin: auto;
   }
 }
