@@ -5,21 +5,36 @@
   left: 0;
   top: 0;
   display: flex;
-  flex-direction: column;
   z-index: 999;
   justify-content: center;
   align-items: center;
-  padding: 2em;
+  padding: 0.5em;
+
+  /* Chrome, Safari, Edge */
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  /* IE just in case... */
+  scrollbar-face-color: #888;
+  scrollbar-track-color: #f1f1f1;
 
   &__container {
-    max-width: 60em;
-    background-color: #fff;
-    padding: 2em;
     position: relative;
     display: flex;
-    gap: 1em;
-    align-items: center;
     border-radius: 4px;
+    background-color: #fff;
+    gap: 1em;
+    max-width: 60em;
+    max-height: 40em;
+    width: 100%;
+    height: 100%;
+    padding: 2em;
+    overflow-y: auto;
 
     span {
       font-weight: bold;
@@ -28,9 +43,11 @@
 
   &__front-poster {
     position: relative;
-    width: 380px;
-    height: 540px;
-    background-color: red;
+    flex: 1 1 40%;
+    max-width: 20em;
+    width: 100%;
+    height: 100%;
+    min-height: 26em;
 
     img {
       position: absolute;
@@ -49,14 +66,14 @@
       color: rgb(112, 112, 112);
     }
     padding-bottom: 1em;
-    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.514);
+    border-bottom: 1px solid rgb(197, 197, 197);
   }
 
   &__info {
+    min-height: 26em;
     flex: 1 1 10%;
-    max-height: 540px;
+    height: 100%;
     overflow-y: auto;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -75,6 +92,7 @@
     div {
       display: flex;
       gap: 0.5em;
+      flex-wrap: wrap;
       p {
         font-size: 0.9em;
         border-radius: 4px;
@@ -99,6 +117,9 @@
     justify-content: center;
     align-items: center;
     border-radius: 4px;
+    background-color: rgb(240, 240, 240);
+    box-shadow: 0px 0px 10px -3px black;
+
     img {
       width: 1.5em;
       height: 1.5em;
@@ -117,5 +138,27 @@
     background-color: rgba(104, 104, 104, 0.479);
     cursor: pointer;
     z-index: -1;
+  }
+}
+
+@media (max-width: 680px) {
+  .modal {
+    &__container {
+      padding: 1em;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__front-poster {
+      display: flex;
+      justify-content: center;
+      background-color: red;
+    }
+
+    &__info {
+      overflow-y: visible;
+      height: auto;
+      min-height: auto;
+    }
   }
 }

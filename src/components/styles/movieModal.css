@@ -5,30 +5,44 @@
   left: 0;
   top: 0;
   display: flex;
-  flex-direction: column;
   z-index: 999;
   justify-content: center;
   align-items: center;
-  padding: 2em;
+  padding: 0.5em;
+  /* Chrome, Safari, Edge */
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  /* IE just in case... */
+  scrollbar-face-color: #888;
+  scrollbar-track-color: #f1f1f1;
+}
+.modal ::-webkit-scrollbar {
+  width: 0px;
 }
 .modal__container {
-  max-width: 60em;
-  background-color: #fff;
-  padding: 2em;
   position: relative;
   display: flex;
-  gap: 1em;
-  align-items: center;
   border-radius: 4px;
+  background-color: #fff;
+  gap: 1em;
+  max-width: 60em;
+  max-height: 40em;
+  width: 100%;
+  height: 100%;
+  padding: 2em;
+  overflow-y: auto;
 }
 .modal__container span {
   font-weight: bold;
 }
 .modal__front-poster {
   position: relative;
-  width: 380px;
-  height: 540px;
-  background-color: red;
+  flex: 1 1 40%;
+  max-width: 20em;
+  width: 100%;
+  height: 100%;
+  min-height: 26em;
 }
 .modal__front-poster img {
   position: absolute;
@@ -41,7 +55,7 @@
 }
 .modal__header {
   padding-bottom: 1em;
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.514);
+  border-bottom: 1px solid rgb(197, 197, 197);
 }
 .modal__header h4 {
   font-size: 1.2em;
@@ -50,10 +64,10 @@
   color: rgb(112, 112, 112);
 }
 .modal__info {
+  min-height: 26em;
   flex: 1 1 10%;
-  max-height: 540px;
+  height: 100%;
   overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -71,6 +85,7 @@
 .modal__genre div {
   display: flex;
   gap: 0.5em;
+  flex-wrap: wrap;
 }
 .modal__genre div p {
   font-size: 0.9em;
@@ -92,6 +107,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 4px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 0px 0px 10px -3px black;
 }
 .modal .modal__close img {
   width: 1.5em;
@@ -109,4 +126,22 @@
   background-color: rgba(104, 104, 104, 0.479);
   cursor: pointer;
   z-index: -1;
+}
+
+@media (max-width: 680px) {
+  .modal__container {
+    padding: 1em;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal__front-poster {
+    display: flex;
+    justify-content: center;
+    background-color: red;
+  }
+  .modal__info {
+    overflow-y: visible;
+    height: auto;
+    min-height: auto;
+  }
 }/*# sourceMappingURL=movieModal.css.map */
