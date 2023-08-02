@@ -8,7 +8,7 @@ aside {
   padding: 1em;
   gap: 2em;
 }
-aside > h3 {
+aside section > h3 {
   text-align: center;
   color: var(--fnt-white-clr);
 }

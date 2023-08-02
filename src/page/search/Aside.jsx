@@ -54,16 +54,22 @@ function History() {
 export default function Aside() {
   return (
     <aside>
-      <h3>Search</h3>
+      <section>
+        <h3>Search</h3>
+      </section>
 
       {/* design purposed */}
       <div className="dot"></div>
 
-      {/* search input */}
-      <SearchInput />
+      <section>
+        {/* search input */}
+        <SearchInput />
+      </section>
 
-      {/* history lists */}
-      <History />
+      <section>
+        {/* history lists */}
+        <History />
+      </section>
     </aside>
   );
 }

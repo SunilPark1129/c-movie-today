@@ -8,9 +8,11 @@ aside {
   padding: 1em;
   gap: 2em;
 
-  > h3 {
-    text-align: center;
-    color: var(--fnt-white-clr);
+  section {
+    > h3 {
+      text-align: center;
+      color: var(--fnt-white-clr);
+    }
   }
 
   .dot {
