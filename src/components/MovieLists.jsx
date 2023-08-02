@@ -4,8 +4,9 @@ import { requestFetch } from "../redux/reducers/movieFetchReducer";
 import { setMovie } from "../redux/reducers/selectedReducer";
 import useObserver from "../hooks/useObserver";
 import MovieRecommend from "./MovieRecommend";
-import MovieModal from "./MovieModal";
 import Loading from "./Loading";
+import NoPoster from "./NoPoster";
+
 import { FetchError, SearchFrontPage, ListEmpty } from "./CatchPage";
 
 import { useLists, useSelected } from "../hooks/useReducer";
@@ -43,12 +44,12 @@ function Lists({ totalPage, movies, page }) {
   useEffect(() => {
     if (isVisible) {
       if (totalPage >= page) {
-        dispatch(
-          requestFetch({
-            url: null,
-            currentPage: `&page=${page}&`,
-          })
-        );
+        // dispatch(
+        //   requestFetch({
+        //     url: null,
+        //     currentPage: `&page=${page}&`,
+        //   })
+        // );
       }
     }
   }, [isVisible]);
@@ -79,7 +80,7 @@ function Lists({ totalPage, movies, page }) {
               alt={title}
             />
           ) : (
-            <div>No image</div>
+            <NoPoster />
           )}
           <div className="lists__item__text-box">
             <p>{title}</p>

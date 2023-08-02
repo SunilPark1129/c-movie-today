@@ -1,0 +1,17 @@
+.noposter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(204, 204, 204);
+}
+.noposter img {
+  width: 50% !important;
+  height: 50% !important;
+  -o-object-fit: contain !important;
+     object-fit: contain !important;
+  -o-object-position: center;
+     object-position: center;
+}/*# sourceMappingURL=noposter.css.map */
