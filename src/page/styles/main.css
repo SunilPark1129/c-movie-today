@@ -368,7 +368,34 @@ aside .dot {
 
 @media (max-width: 1200px) {
   .lists__item {
-    display: flex;
     flex: 0 1 25%;
+  }
+}
+@media (max-width: 1000px) {
+  main {
+    flex-direction: column;
+  }
+  .lists {
+    padding: 0 1em;
+  }
+  .border {
+    display: none;
+  }
+}
+@media (max-width: 570px) {
+  .lists__recommend__img-box {
+    left: 0;
+    right: 0;
+  }
+  .lists__recommend__img-box::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background: linear-gradient(to left, var(--bg-clr) 0% 1%, transparent 20% 80%, var(--bg-clr) 99% 100%);
+  }
+  .lists__item {
+    flex: 0 1 50%;
   }
 }/*# sourceMappingURL=main.css.map */
