@@ -39,7 +39,7 @@ export default function MovieRecommend() {
   }
 
   return (
-    <div
+    <section
       className={`lists__recommend ${
         lists[0] &&
         lists[0].movies.length !== 0 &&
@@ -74,6 +74,6 @@ export default function MovieRecommend() {
           </div>
         </article>
       ) : null}
-    </div>
+    </section>
   );
 }

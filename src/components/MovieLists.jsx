@@ -119,7 +119,7 @@ function ListHeader() {
 // a component for displaying movie items
 export default function MovieLists() {
   const { lists, isLoading, error } = useLists();
-  const { selectedMovie, currentLocation } = useSelected();
+  const { currentLocation } = useSelected();
 
   return (
     <article className="lists">
@@ -132,8 +132,13 @@ export default function MovieLists() {
         {/* display fetched movie items */}
         {!error && lists.length !== 0 && (
           <>
+            {/* header */}
             <ListHeader />
+
+            {/* display random movie list */}
             <MovieRecommend />
+
+            {/* display fetched items */}
             <DisplayLists />
           </>
         )}

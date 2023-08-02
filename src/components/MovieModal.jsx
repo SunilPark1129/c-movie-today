@@ -8,7 +8,7 @@ import imgClose from "../assets/close.svg";
 import "./styles/movieModal.css";
 
 export default function MovieModal({ selectedMovie }) {
-  // when open the modal, automatically overflow sets hidden
+  // when open the modal, automatically set overflow to hidden
   useEffect(() => {
     document.querySelector("body").style.overflow = "hidden";
     return () => {
@@ -18,7 +18,7 @@ export default function MovieModal({ selectedMovie }) {
 
   const dispatch = useDispatch();
 
-  // setup for labels
+  // destructuring assignment from selectedMovie object
   const {
     genre_ids,
     poster_path,
@@ -100,7 +100,7 @@ export default function MovieModal({ selectedMovie }) {
             </div>
           </div>
         </div>
-        {/* outside click close event */}
+        {/* when clicking the outside of the modal container, then closing modal */}
         <div
           className="modal__outside"
           style={{}}

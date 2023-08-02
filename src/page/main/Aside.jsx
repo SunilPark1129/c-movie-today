@@ -12,23 +12,25 @@ export default function Aside() {
   const [getGenreID, setGetGenreID] = useState(getGenre[0].genreID);
   const [getSortName, setGetSortName] = useState(sortBy[0].sortName);
   const [getGenreName, setGetGenreName] = useState(getGenre[0].genreName);
-  const currentRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const unmounted = useRef(null);
   const dispatch = useDispatch();
 
-  const [menuOpen, setMenuOpen] = useState(false);
-
+  // sort button handler
   function sortClickHandler(url, name) {
     setGetSortURL(url);
     setGetSortName(name);
   }
 
+  // genre button handler
   function genreClickHandler(id, name) {
     setGetGenreID(id);
     setGetGenreName(name);
   }
 
+  // when clicking the button, fetching the URL
   useEffect(() => {
-    if (currentRef.current) {
+    if (unmounted.current) {
       dispatch(movieListClear());
       const URL = getSortURL + "with_genres=" + getGenreID;
       dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
@@ -36,7 +38,7 @@ export default function Aside() {
     }
 
     return () => {
-      currentRef.current = true;
+      unmounted.current = true;
     };
   }, [getSortURL, getGenreID]);
 
