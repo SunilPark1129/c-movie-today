@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import { setMovie } from "../redux/reducers/selectedReducer";
 import { useDispatch } from "react-redux";
-import { useSelected } from "../hooks/useReducer";
-import "./styles/movieModal.css";
 import { matchGenre } from "../data/data";
 import NoPoster from "./NoPoster";
 import imgClose from "../assets/close.svg";
 
-export default function MovieModal() {
+import "./styles/movieModal.css";
+
+export default function MovieModal({ selectedMovie }) {
   const dispatch = useDispatch();
-  const { selectedMovie } = useSelected();
+
   const {
-    id,
     genre_ids,
     poster_path,
     backdrop_path,
@@ -23,49 +22,29 @@ export default function MovieModal() {
     vote_count,
     released_date,
   } = selectedMovie;
+
   const imgURL = "https://image.tmdb.org/t/p/w500/";
 
-  const genreID =
-    genre_ids.length !== 0 ? genre_ids.map((item) => matchGenre(item)) : ["??"];
+  const genreID = genre_ids
+    ? genre_ids.map((item) => matchGenre(item))
+    : ["??"];
 
   useEffect(() => {
     document.querySelector("body").style.overflow = "hidden";
     return () => {
       document.querySelector("body").style.overflow = "auto";
     };
-  }, []);
+  }, [selectedMovie]);
 
   function closeClickHandler() {
     dispatch(setMovie(null));
   }
 
-  // id,
-  // genre_ids,
-  // poster_path,
-  // backdrop_path,
-  // overview,
-  // original_language,
-  // original_title,
-  // title,
-  // vote_average,
-  // vote_count,
-  // released_date,
   if (selectedMovie) {
     return (
       <article className="modal">
         {/* front page */}
-        <div
-          className="modal__container"
-          style={{
-            position: "fixed",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%,-50%)",
-            background: "#fff",
-            padding: "2rem",
-            zIndex: "999",
-          }}
-        >
+        <div className="modal__container">
           <div className="modal__close" onClick={closeClickHandler}>
             <img src={imgClose} alt="close tab" />
           </div>
@@ -125,7 +104,6 @@ export default function MovieModal() {
             top: "0",
             width: "100%",
             height: "100%",
-            zIndex: "998",
             background: "#3d3d3d94",
           }}
           onClick={closeClickHandler}

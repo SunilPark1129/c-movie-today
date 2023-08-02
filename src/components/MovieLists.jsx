@@ -145,7 +145,7 @@ export default function MovieLists() {
       </div>
 
       {/* display selected movie content */}
-      {selectedMovie && <MovieModal />}
+      {/* {selectedMovie && <MovieModal />} */}
 
       {/* edge radius border for styling */}
       <div className="border">

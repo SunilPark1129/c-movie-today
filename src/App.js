@@ -6,6 +6,7 @@ import ErrorPage from "./page/error/ErrorPage";
 import InfoPage from "./page/info/InfoPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ModalOpen from "./components/styles/ModalOpen";
 
 // when refreshed, scroll to top
 window.onbeforeunload = function () {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/info" element={<InfoPage />} />
             <Route path="/*" element={<ErrorPage />} />
           </Routes>
+          <ModalOpen />
         </div>
         <Footer />
       </Router>
