@@ -103,18 +103,6 @@ aside .dot {
   height: 1.3em;
 }
 
-main .toggler {
-  display: none;
-  position: fixed;
-  top: 4em;
-  left: 0;
-  background-color: red;
-  width: 2.5em;
-  height: 2.5em;
-  z-index: 1000;
-  cursor: pointer;
-}
-
 .main aside section {
   display: flex;
   gap: 0.8em;
@@ -409,9 +397,6 @@ main .toggler {
   }
   main aside.toggled {
     transform: translateX(-100%);
-  }
-  main .toggler {
-    display: block;
   }
   .main aside {
     padding: 4em 0;

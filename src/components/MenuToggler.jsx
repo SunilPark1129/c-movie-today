@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-
+import imgToggleLeft from "../assets/sidebar-left.svg";
+import imgToggleRight from "../assets/sidebar-right.svg";
 import { useSelected } from "../hooks/useReducer";
+import "./styles/menuToggler.css";
 
 export default function MenuToggler({ menuOpen, setMenuOpen }) {
   const { selectedMovie } = useSelected();
@@ -31,7 +33,11 @@ export default function MenuToggler({ menuOpen, setMenuOpen }) {
 
   return (
     <div className="toggler" onClick={() => setMenuOpen((prev) => !prev)}>
-      open
+      {menuOpen ? (
+        <img src={imgToggleRight} alt="sidebar" />
+      ) : (
+        <img src={imgToggleLeft} alt="sidebar" />
+      )}
     </div>
   );
 }

@@ -1,0 +1,26 @@
+.toggler {
+  display: none;
+  position: fixed;
+  top: 4em;
+  left: 0;
+  background-color: var(--primary-clr);
+  width: 2.5em;
+  height: 2.5em;
+  padding: 0.2em;
+  z-index: 1000;
+  //   box-shadow: 3px 3px 5px -2px rgba(0, 0, 0, 0.555);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .toggler {
+    display: block;
+  }
+}

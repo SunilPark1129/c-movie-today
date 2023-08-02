@@ -116,20 +116,6 @@ aside {
   }
 }
 
-main {
-  .toggler {
-    display: none;
-    position: fixed;
-    top: 4em;
-    left: 0;
-    background-color: red;
-    width: 2.5em;
-    height: 2.5em;
-    z-index: 1000;
-    cursor: pointer;
-  }
-}
-
 .main {
   aside {
     section {
@@ -456,9 +442,6 @@ main {
       &.toggled {
         transform: translateX(-100%);
       }
-    }
-    .toggler {
-      display: block;
     }
   }
   .main {
