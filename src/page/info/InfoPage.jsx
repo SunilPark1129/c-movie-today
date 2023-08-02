@@ -13,13 +13,13 @@ export default function InfoPage() {
           <h3>About us</h3>
           <div>
             <p>
-              Cinema Movie is a site that allows users to easily search for and
+              C Movie Today is a site that allows users to easily search for and
               recommend movies. You can search directly by movie title, or it
               recommends 20 famous movies by genre through the pre-prepared
               feature.
             </p>
             <p>
-              Before you watch a movie, look for a movie in Cinema Movie first.
+              Before you watch a movie, look for a movie in C Movie Today first.
               We provide users with a movie's rating, release date, poster and
               overview. We update from old movies to newest movies and provide
               listings of all types.
@@ -42,7 +42,7 @@ export default function InfoPage() {
         <section>
           <h3>Application Programming Interface</h3>
           <div className="info__img-box">
-            <img src={logo} alt="cinema movie logo" width={60} />
+            <img src={logo} alt="C Movie Today logo" width={60} />
             <img
               src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
               alt="the movie db logo"
