@@ -6,7 +6,7 @@ export default function InfoPage() {
   return (
     <main className="info">
       <header>
-        <h2>Information</h2>
+        <h1>Information</h1>
       </header>
       <div>
         <section>
