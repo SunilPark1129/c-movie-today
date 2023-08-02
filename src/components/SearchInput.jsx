@@ -22,6 +22,7 @@ import { useQueries } from "../hooks/useReducer";
 export default function SearchInput() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const hasMounted = useRef(true);
   const containerRef = useRef(null);
   const [userQuery, setUserQuery] = useState("");
 
@@ -59,16 +60,24 @@ export default function SearchInput() {
   // request the query list
   // searchTerm = has been used the debounce with user input
   useEffect(() => {
-    if (searchTerm)
-      if (searchTerm.trim() !== "") {
-        dispatch(queryListClear());
-        const URL = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
-        dispatch(requestQueryFetch({ url: URL, currentPage: "&page=1&" }));
-        setIsFocusing(true);
-      } else {
-        // clear query when search term is empty
-        dispatch(queryListClear());
+    if (!hasMounted.current) {
+      if (searchTerm)
+        if (searchTerm.trim() !== "") {
+          dispatch(queryListClear());
+          const URL = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
+          dispatch(requestQueryFetch({ url: URL, currentPage: "&page=1&" }));
+          setIsFocusing(true);
+        } else {
+          // clear query when search term is empty
+          dispatch(queryListClear());
+        }
+      else if (searchTerm === "") {
+        setIsFocusing(false);
       }
+    }
+    return () => {
+      hasMounted.current = false;
+    };
   }, [searchTerm]);
 
   // request Fetch
