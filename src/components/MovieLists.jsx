@@ -44,12 +44,12 @@ function Lists({ totalPage, movies, page }) {
   useEffect(() => {
     if (isVisible) {
       if (totalPage >= page) {
-        // dispatch(
-        //   requestFetch({
-        //     url: null,
-        //     currentPage: `&page=${page}&`,
-        //   })
-        // );
+        dispatch(
+          requestFetch({
+            url: null,
+            currentPage: `&page=${page}&`,
+          })
+        );
       }
     }
   }, [isVisible]);

@@ -157,6 +157,7 @@ aside .dot {
   position: relative;
   width: 100%;
   padding: 0 2em;
+  padding-bottom: 2em !important;
   z-index: 100;
   background-color: var(--bg-clr);
   min-height: 100vh;
