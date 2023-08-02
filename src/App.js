@@ -14,6 +14,7 @@ window.onbeforeunload = function () {
 };
 
 function App() {
+  console.log("app rendered");
   return (
     <div className="App">
       <Router>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Aside from "./Aside";
 import MovieLists from "../../components/MovieLists";
 import "../styles/main.css";
@@ -8,11 +8,19 @@ import { setNavigate } from "../../redux/reducers/selectedReducer";
 
 export default function Main() {
   const dispatch = useDispatch();
+  const unmounted = useRef(false);
 
   useEffect(() => {
-    dispatch(setNavigate("main"));
+    if (unmounted.current) {
+      console.log("set navigate main");
+      dispatch(setNavigate("main"));
+    }
+    return () => {
+      unmounted.current = true;
+    };
   }, []);
 
+  console.log("main rendered");
   return (
     <main className="main">
       <Aside />

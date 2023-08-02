@@ -31,6 +31,7 @@ export default function Aside() {
   // when clicking the button, fetching the URL
   useEffect(() => {
     if (unmounted.current) {
+      console.log("aside unmounted");
       dispatch(movieListClear());
       const URL = getSortURL + "with_genres=" + getGenreID;
       dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
