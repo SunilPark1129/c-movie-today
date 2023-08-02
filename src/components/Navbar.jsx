@@ -37,7 +37,6 @@ export default function Navbar() {
         </div>
         <div>
           <SearchInput />
-          <p>color mode</p>
         </div>
       </nav>
     </header>
