@@ -31,6 +31,10 @@ code {
   --bg-clr: #ececec;
 }
 
+body {
+  min-width: 300px;
+}
+
 li {
   list-style: none;
 }
