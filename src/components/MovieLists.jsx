@@ -14,7 +14,6 @@ import { useLists, useSelected } from "../hooks/useReducer";
 // display movie per page
 function DisplayLists() {
   const { data, lists } = useLists();
-  console.log("list rendered");
 
   if (lists[0]?.movies.length !== 0) {
     // making another components to find and set the ref into last element

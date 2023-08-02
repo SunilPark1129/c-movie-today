@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { getGenre, sortBy } from "../../data/data";
 import {
   requestFetch,
@@ -13,7 +13,6 @@ export default function Aside() {
   const [getSortName, setGetSortName] = useState(sortBy[0].sortName);
   const [getGenreName, setGetGenreName] = useState(getGenre[0].genreName);
   const [menuOpen, setMenuOpen] = useState(false);
-  const unmounted = useRef(null);
   const dispatch = useDispatch();
 
   // sort button handler
@@ -30,17 +29,10 @@ export default function Aside() {
 
   // when clicking the button, fetching the URL
   useEffect(() => {
-    if (unmounted.current) {
-      console.log("aside unmounted");
-      dispatch(movieListClear());
-      const URL = getSortURL + "with_genres=" + getGenreID;
-      dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
-      window.scrollTo(0, 0);
-    }
-
-    return () => {
-      unmounted.current = true;
-    };
+    dispatch(movieListClear());
+    const URL = getSortURL + "with_genres=" + getGenreID;
+    dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
+    window.scrollTo(0, 0);
   }, [getSortURL, getGenreID]);
 
   return (
