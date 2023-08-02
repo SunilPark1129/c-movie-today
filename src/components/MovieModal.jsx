@@ -8,8 +8,17 @@ import imgClose from "../assets/close.svg";
 import "./styles/movieModal.css";
 
 export default function MovieModal({ selectedMovie }) {
+  // when open the modal, automatically overflow sets hidden
+  useEffect(() => {
+    document.querySelector("body").style.overflow = "hidden";
+    return () => {
+      document.querySelector("body").style.overflow = "auto";
+    };
+  }, []);
+
   const dispatch = useDispatch();
 
+  // setup for labels
   const {
     genre_ids,
     poster_path,
@@ -20,22 +29,14 @@ export default function MovieModal({ selectedMovie }) {
     title,
     vote_average,
     vote_count,
-    released_date,
+    release_date,
   } = selectedMovie;
-
   const imgURL = "https://image.tmdb.org/t/p/w500/";
-
   const genreID = genre_ids
     ? genre_ids.map((item) => matchGenre(item))
     : ["??"];
 
-  useEffect(() => {
-    document.querySelector("body").style.overflow = "hidden";
-    return () => {
-      document.querySelector("body").style.overflow = "auto";
-    };
-  }, [selectedMovie]);
-
+  // close the modal
   function closeClickHandler() {
     dispatch(setMovie(null));
   }
@@ -50,49 +51,53 @@ export default function MovieModal({ selectedMovie }) {
           </div>
           <div className="modal__front-poster">
             {poster_path ? (
-              <img
-                src={imgURL + poster_path}
-                alt="movie front poster"
-                width={200}
-              />
+              <img src={imgURL + poster_path} alt="movie front poster" />
             ) : (
               <NoPoster />
             )}
           </div>
-          <header className="modal__header">
-            <h4>{title}</h4>
-            <p>{original_title}</p>
-            <p>{original_language.toUpperCase()}</p>
-          </header>
-          {backdrop_path && (
-            <img
-              className="modal__back-poster"
-              src={imgURL + backdrop_path}
-              alt="movie front poster"
-              width={200}
-            />
-          )}
-          <div className="modal__text-box">
-            <p>{overview}</p>
-            <div className="modal__genre">
-              <p>
-                <span>Genre</span>:
-              </p>
+          <div className="modal__info">
+            <header className="modal__header">
+              <h4>{title}</h4>
+              <p className="modal__header__original">{original_title}</p>
+            </header>
+            <div className="modal__text-box">
               <div>
-                {genreID.map((item) => (
-                  <p key={item}>{item}</p>
-                ))}
+                <p>
+                  <span>Overview</span> :
+                </p>
+                <p>{overview}</p>
               </div>
+              <div className="modal__genre">
+                <p>
+                  <span>Genre</span>:
+                </p>
+                <div>
+                  {genreID.map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </div>
+              </div>
+              <p>
+                <span>Release date</span>: {release_date ?? "??"}
+              </p>
+              <p>
+                <span>Language</span>: {original_language.toUpperCase() ?? "??"}
+              </p>
+              <p>
+                <span>Vote count</span>: {vote_count ?? "??"}
+              </p>
+              <p>
+                <span>Vote average</span>: {vote_average ?? "??"}
+              </p>
+              {backdrop_path && (
+                <img
+                  className="modal__back-poster"
+                  src={imgURL + backdrop_path}
+                  alt="movie front poster"
+                />
+              )}
             </div>
-            <p>
-              <span>Released date</span>: {released_date ?? "??"}
-            </p>
-            <p>
-              <span>Vote count</span>: {vote_count}
-            </p>
-            <p>
-              <span>Vote average</span>: {vote_average}
-            </p>
           </div>
         </div>
         {/* outside click close event */}
