@@ -24,55 +24,6 @@ aside {
   }
 }
 
-.page-announce {
-  display: flex;
-  padding: 10em 1em;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2em;
-
-  &__text {
-    display: flex;
-    flex-direction: column;
-    gap: 5em;
-    padding: 2em;
-    max-width: 40em;
-
-    h3 {
-      font-size: 3em;
-    }
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-    }
-    li {
-      font-size: 1.1em;
-      list-style-type: disc;
-      span {
-        color: var(--point-clr);
-        font-weight: bold;
-      }
-    }
-  }
-
-  img {
-    flex: 0 1 30%;
-
-    width: 22em;
-    animation: 2s ani-updown ease-in-out infinite alternate;
-  }
-}
-
-@keyframes ani-updown {
-  100% {
-    transform: translateY(-1rem);
-  }
-}
-
 .search {
   &__history {
     display: flex;
@@ -92,27 +43,27 @@ aside {
       cursor: pointer;
     }
   }
-}
 
-.search__button {
-  button {
-    width: 2em;
-    height: 2em;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    background-color: var(--bg-clr);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &:hover {
-      outline: 2px solid var(--point-clr);
+  &__button {
+    button {
+      width: 2em;
+      height: 2em;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      background-color: var(--bg-clr);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        outline: 2px solid var(--point-clr);
+      }
     }
-  }
-  img {
-    width: 1.3em;
-    height: 1.3em;
+    img {
+      width: 1.3em;
+      height: 1.3em;
+    }
   }
 }
 
@@ -156,7 +107,6 @@ aside {
         left: 100%;
         transform: translateX(100%);
       }
-
       &:hover {
         color: var(--point-clr);
       }
@@ -199,7 +149,7 @@ aside {
     }
   }
 
-  &__display {
+  &__container {
     display: flex;
     flex-wrap: wrap;
   }

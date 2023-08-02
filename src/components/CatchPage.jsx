@@ -2,6 +2,7 @@ import React from "react";
 import imgEmpty from "../assets/empty.svg";
 import imgPopcorn from "../assets/popcorn.svg";
 import { useLists } from "../hooks/useReducer";
+import "./styles/catchpage.css";
 
 // if found an error during the fetch item, display this content
 export function FetchError() {

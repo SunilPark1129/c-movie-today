@@ -123,7 +123,7 @@ export default function MovieLists() {
 
   return (
     <article className="lists">
-      <div className="lists__display">
+      <div className="lists__container">
         {!error &&
           lists.length === 0 &&
           !isLoading &&
