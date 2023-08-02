@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 
 import { useQueries } from "../hooks/useReducer";
 
-export default function SearchInput() {
+export default function SearchInput({ setMenuOpen }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const hasMounted = useRef(true);
@@ -97,6 +97,11 @@ export default function SearchInput() {
 
     // add history in the store
     dispatch(historyAdd(tempQuery));
+
+    // if requesting from aside search bar (not navbar)
+    if (setMenuOpen) {
+      setMenuOpen(false);
+    }
   }
 
   // get query from user input value

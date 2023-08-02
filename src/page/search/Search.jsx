@@ -15,8 +15,6 @@ export default function Search() {
     dispatch(setNavigate("search"));
   }, []);
 
-  console.log("render");
-
   return (
     <main className="search">
       <Aside />

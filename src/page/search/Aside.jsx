@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   requestFetch,
   movieListClear,
@@ -14,7 +14,9 @@ import SearchInput from "../../components/SearchInput";
 
 import { useQueries } from "../../hooks/useReducer";
 
-function History() {
+import MenuToggler from "../../components/MenuToggler";
+
+function History({ setMenuOpen }) {
   const dispatch = useDispatch();
   const { histories } = useQueries();
 
@@ -28,6 +30,7 @@ function History() {
 
     // request another datas to display movie lists
     dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
+    setMenuOpen(false);
   }
 
   // remove targeted history
@@ -52,24 +55,35 @@ function History() {
 }
 
 export default function Aside() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <aside>
-      <section>
-        <h3>Search</h3>
-      </section>
+    <>
+      <aside className={menuOpen ? "toggled" : ""}>
+        <section>
+          <h3>Search</h3>
+        </section>
 
-      {/* design purposed */}
-      <div className="dot"></div>
+        {/* design purposed */}
+        <div className="dot"></div>
 
-      <section>
-        {/* search input */}
-        <SearchInput />
-      </section>
+        <section>
+          {/* search input */}
+          <SearchInput setMenuOpen={(bool) => setMenuOpen(bool)} />
+        </section>
 
-      <section>
-        {/* history lists */}
-        <History />
-      </section>
-    </aside>
+        <section>
+          {/* history lists */}
+          <History setMenuOpen={(bool) => setMenuOpen(bool)} />
+        </section>
+      </aside>
+
+      {/* menu open bar */}
+      {/* only exist when window width is under 1000px */}
+      <MenuToggler
+        menuOpen={menuOpen}
+        setMenuOpen={(bool) => setMenuOpen(bool)}
+      />
+    </>
   );
 }

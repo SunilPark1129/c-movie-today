@@ -116,6 +116,20 @@ aside {
   }
 }
 
+main {
+  .toggler {
+    display: none;
+    position: fixed;
+    top: 4em;
+    left: 0;
+    background-color: red;
+    width: 2.5em;
+    height: 2.5em;
+    z-index: 1000;
+    cursor: pointer;
+  }
+}
+
 .main {
   aside {
     section {
@@ -125,6 +139,8 @@ aside {
     }
 
     button {
+      max-width: 20rem;
+      margin: auto;
       display: flex;
       width: 100%;
       padding: 1em 0.3em;
@@ -422,10 +438,42 @@ aside {
 @media (max-width: 1000px) {
   main {
     flex-direction: column;
+    aside {
+      position: fixed;
+      z-index: 999;
+      left: 100%;
+      top: 0;
+      max-width: none;
+      transition: 0.3s transform;
+      overflow-y: auto;
+      height: 100vh;
+      &.toggled {
+        transform: translateX(-100%);
+      }
+    }
+    .toggler {
+      display: block;
+    }
   }
+  .main {
+    aside {
+      padding: 4em 0;
+      button {
+        &:after {
+          display: none;
+        }
+        &.activated {
+          border-radius: 0.5em;
+          color: var(--point-clr);
+        }
+      }
+    }
+  }
+
   .lists {
     padding: 0 1em;
   }
+
   .border {
     display: none;
   }
