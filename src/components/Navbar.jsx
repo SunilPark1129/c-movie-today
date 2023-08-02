@@ -35,7 +35,7 @@ export default function Navbar() {
             })}
           </ul>
         </div>
-        <div>
+        <div className="nav__search">
           <SearchInput />
         </div>
       </nav>

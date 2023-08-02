@@ -37,3 +37,9 @@ nav {
     color: var(--point-clr);
   }
 }
+
+@media (max-width: 500px) {
+  .nav__search {
+    display: none;
+  }
+}
