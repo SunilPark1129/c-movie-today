@@ -28,6 +28,7 @@ aside .dot {
 .search__history__content {
   display: flex;
   gap: 0.5em;
+  align-items: center;
 }
 .search__history p {
   color: var(--fnt-white-clr);
