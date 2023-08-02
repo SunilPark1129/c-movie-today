@@ -103,14 +103,7 @@ export default function MovieModal({ selectedMovie }) {
         {/* outside click close event */}
         <div
           className="modal__outside"
-          style={{
-            position: "fixed",
-            left: "0",
-            top: "0",
-            width: "100%",
-            height: "100%",
-            background: "#3d3d3d94",
-          }}
+          style={{}}
           onClick={closeClickHandler}
         ></div>
       </article>
