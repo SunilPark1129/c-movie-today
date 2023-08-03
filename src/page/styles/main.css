@@ -84,6 +84,7 @@ aside .dot {
   transition-timing-function: ease-in-out;
   outline: none;
   box-shadow: 0px 0px 0px 0px rgba(80, 80, 80, 0.459);
+  height: 3em;
 }
 .main aside button:after {
   transition: 0.3s transform ease-in-out;
