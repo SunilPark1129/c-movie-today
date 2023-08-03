@@ -19,6 +19,8 @@ import { useDispatch } from "react-redux";
 
 import { useQueries } from "../hooks/useReducer";
 
+let lastSearchTerm;
+
 export default function SearchInput({ setMenuOpen }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -76,6 +78,8 @@ export default function SearchInput({ setMenuOpen }) {
 
   // request Fetch
   function queryFetch(title) {
+    // lastSearchTerm = prevent from request the fetch if user is re-fetching with the last searched query
+    if (title.trim() === "" || lastSearchTerm === title) return;
     const tempQuery = title;
 
     navigate("/search");
@@ -96,6 +100,7 @@ export default function SearchInput({ setMenuOpen }) {
     if (setMenuOpen) {
       setMenuOpen(false);
     }
+    lastSearchTerm = tempQuery;
   }
 
   // get query from user input value

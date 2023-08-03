@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   requestFetch,
   movieListClear,
@@ -16,12 +16,20 @@ import { useQueries } from "../../hooks/useReducer";
 
 import MenuToggler from "../../components/MenuToggler";
 
+let firstTimeVisit;
 function History({ setMenuOpen }) {
   const dispatch = useDispatch();
   const { histories } = useQueries();
 
+  // every time when the user opens the search page
+  useEffect(() => {
+    firstTimeVisit = true;
+  }, []);
+
   // request Fetch
   function queryFetch(title) {
+    // prevent from re-fetching if the user is requesting API with the current history
+    if (!firstTimeVisit && histories[0] === title) return;
     const tempQuery = title;
     dispatch(movieListClear());
     dispatch(queryListClear());
@@ -31,6 +39,8 @@ function History({ setMenuOpen }) {
     // request another datas to display movie lists
     dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
     setMenuOpen(false);
+
+    firstTimeVisit = false;
   }
 
   // remove targeted history
