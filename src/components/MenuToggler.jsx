@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import imgToggleLeft from "../assets/sidebar-left.svg";
 import imgToggleRight from "../assets/sidebar-right.svg";
 import { useSelected } from "../hooks/useReducer";
@@ -42,12 +42,17 @@ export default function MenuToggler({ menuOpen, setMenuOpen }) {
   }, [selectedMovie]);
 
   return (
-    <div className="toggler" onClick={() => setMenuOpen((prev) => !prev)}>
-      {menuOpen ? (
-        <img src={imgToggleRight} alt="sidebar" />
-      ) : (
-        <img src={imgToggleLeft} alt="sidebar" />
-      )}
-    </div>
+    <Fragment>
+      <div className="toggler" onClick={() => setMenuOpen((prev) => !prev)}>
+        {menuOpen ? (
+          <img src={imgToggleRight} alt="sidebar" />
+        ) : (
+          <img src={imgToggleLeft} alt="sidebar" />
+        )}
+      </div>
+      <div
+        className={`toggler-outside ${menuOpen && "toggler-outside--active"}`}
+      ></div>
+    </Fragment>
   );
 }

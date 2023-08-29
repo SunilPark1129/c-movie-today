@@ -8,7 +8,6 @@
   height: 2.5em;
   padding: 0.2em;
   z-index: 1000;
-  //   box-shadow: 3px 3px 5px -2px rgba(0, 0, 0, 0.555);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   cursor: pointer;
@@ -16,6 +15,25 @@
   img {
     width: 100%;
     height: 100%;
+  }
+}
+
+.toggler-outside {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  transition-duration: 0.3s;
+  transition-property: backdrop-filter, background-color;
+  pointer-events: none;
+
+  &--active {
+    display: block;
+    background-color: rgba(61, 61, 61, 0.575);
+    backdrop-filter: blur(3px);
+    pointer-events: auto;
   }
 }
 
