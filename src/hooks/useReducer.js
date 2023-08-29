@@ -15,8 +15,6 @@ export function useQueries() {
 }
 
 export function useSelected() {
-  const { selectedMovie, currentLocation } = useSelector(
-    (state) => state.selectedReducer
-  );
-  return { selectedMovie, currentLocation };
+  const { selectedMovie } = useSelector((state) => state.selectedReducer);
+  return { selectedMovie };
 }

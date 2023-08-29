@@ -54,6 +54,7 @@ export function ListEmpty() {
 
 // Front page for Search page
 export function SearchHomePage() {
+  console.log("shown");
   return (
     <article className="page-announce">
       <div className="page-announce__text">

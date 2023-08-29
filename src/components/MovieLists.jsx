@@ -7,9 +7,11 @@ import MovieRecommend from "./MovieRecommend";
 import Loading from "./Loading";
 import NoPoster from "./NoPoster";
 
+import { movieListClear } from "../redux/reducers/movieFetchReducer";
+
 import { FetchError, SearchHomePage, ListEmpty } from "./CatchPage";
 
-import { useLists, useSelected } from "../hooks/useReducer";
+import { useLists } from "../hooks/useReducer";
 
 function DisplayMovieLists() {
   const { data, lists } = useLists();
@@ -119,7 +121,14 @@ function CategoryHeader() {
 // a component for displaying movie items
 export default function MovieLists() {
   const { lists, isLoading, error } = useLists();
-  const { currentLocation } = useSelected();
+  const dispatch = useDispatch();
+
+  // clear stored items
+  useEffect(() => {
+    dispatch(movieListClear());
+  }, []);
+
+  const currentURL = window.location.pathname;
 
   return (
     <article className="lists">
@@ -127,7 +136,7 @@ export default function MovieLists() {
         {!error &&
           lists.length === 0 &&
           !isLoading &&
-          currentLocation === "search" && <SearchHomePage />}
+          currentURL.includes("search") && <SearchHomePage />}
 
         {!error && lists.length !== 0 && (
           <>
