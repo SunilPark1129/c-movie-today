@@ -18,7 +18,6 @@ export default function MovieModal({ selectedMovie }) {
 
   const dispatch = useDispatch();
 
-  // destructuring assignment from selectedMovie object
   const {
     genre_ids,
     poster_path,
@@ -31,27 +30,26 @@ export default function MovieModal({ selectedMovie }) {
     vote_count,
     release_date,
   } = selectedMovie;
-  const imgURL = "https://image.tmdb.org/t/p/w500/";
+
+  const BASE_URL = "https://image.tmdb.org/t/p/w500/";
   const genreID = genre_ids
     ? genre_ids.map((item) => matchGenre(item))
     : ["??"];
 
-  // close the modal
-  function closeClickHandler() {
+  function closeModalClickHandler() {
     dispatch(setMovie(null));
   }
 
   if (selectedMovie) {
     return (
       <article className="modal">
-        {/* front page */}
         <div className="modal__container">
-          <div className="modal__close" onClick={closeClickHandler}>
+          <div className="modal__close" onClick={closeModalClickHandler}>
             <img src={imgClose} alt="close tab" />
           </div>
           <div className="modal__front-poster">
             {poster_path ? (
-              <img src={imgURL + poster_path} alt="movie front poster" />
+              <img src={BASE_URL + poster_path} alt="movie front poster" />
             ) : (
               <NoPoster />
             )}
@@ -93,19 +91,15 @@ export default function MovieModal({ selectedMovie }) {
               {backdrop_path && (
                 <img
                   className="modal__back-poster"
-                  src={imgURL + backdrop_path}
+                  src={BASE_URL + backdrop_path}
                   alt="movie front poster"
                 />
               )}
             </div>
           </div>
         </div>
-        {/* when clicking the outside of the modal container, then closing modal */}
-        <div
-          className="modal__outside"
-          style={{}}
-          onClick={closeClickHandler}
-        ></div>
+
+        <div className="modal__outside" onClick={closeModalClickHandler}></div>
       </article>
     );
   } else {

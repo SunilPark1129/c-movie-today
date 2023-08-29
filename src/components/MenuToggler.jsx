@@ -7,7 +7,7 @@ import "./styles/menuToggler.css";
 export default function MenuToggler({ menuOpen, setMenuOpen }) {
   const { selectedMovie } = useSelected();
 
-  // when menu trigger is on, disable the scroll
+  // when menu is on, disable the scroll
   useEffect(() => {
     if (menuOpen) {
       document.querySelector("body").style.overflow = "hidden";
@@ -19,15 +19,14 @@ export default function MenuToggler({ menuOpen, setMenuOpen }) {
 
   /* 
     when overflow is hidden by clicking the menu trigger, 
-    make body overflow back to auto when window with is over 1000
-    when window width is over 1000 trigger button will disapear 
+    make body overflow back to auto when window with is over 1000.
+    
+    when window width is over 1000 by resizing, menu button will disapear automatically
   */
   function handleResize() {
     const windowWidth = window.innerWidth;
     /* 
-      when selectedMovie is not null (which means that user is currently viewing the movie info)
-      then prevent overflow auto
-      because when user clicked the movie list, it also turned body to overflow hidden
+      selectedMovie = currently a user is watching the movie content
     */
     if (windowWidth >= 1000 && !selectedMovie) {
       setMenuOpen(false);
@@ -35,7 +34,6 @@ export default function MenuToggler({ menuOpen, setMenuOpen }) {
     }
   }
 
-  // adding resize handler
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
