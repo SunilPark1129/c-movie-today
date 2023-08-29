@@ -19,88 +19,77 @@ import { useDispatch } from "react-redux";
 
 import { useQueries } from "../hooks/useReducer";
 
-let lastSearchTerm;
-
 export default function SearchInput({ setMenuOpen }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const containerRef = useRef(null);
   const [userQuery, setUserQuery] = useState("");
-
-  // check either currently user is focusing in input or not
-  const [isFocusing, setIsFocusing] = useState(false);
+  const [hasFocusInput, setHasFocusInput] = useState(false);
 
   const { queries, error } = useQueries();
 
-  // everytime rerender when changing the input state
-  // debounce is used to prevent web API overload
+  useEffect(() => {
+    dispatch(queryListClear());
+  }, []);
+
+  // debounce is used to prevent overload the server
   const searchTerm = useDebounce(userQuery);
 
-  /* 
-    useEffect for hiding the query lists when clicking the 
-    outside of the content (execpt for the input tag and the query list)
-  */
+  // useEffect for hiding the suggested query lists when losing the focus from input
   useEffect(() => {
-    // when component is mounted add click eventhandler in document
-    document.addEventListener("click", handleDocumentClick);
+    document.addEventListener("click", documentClickHandler);
 
-    // when component is unmounted remove click eventhandler from document
     return () => {
-      document.removeEventListener("click", handleDocumentClick);
+      document.removeEventListener("click", documentClickHandler);
     };
   }, []);
 
-  // when clicking the doucment
-  function handleDocumentClick(e) {
+  function documentClickHandler(e) {
+    // console.log(containerRef.current.contains(e.target));
     if (containerRef.current && !containerRef.current.contains(e.target)) {
-      // when losing the focus, hiding the query list
-      setIsFocusing(false);
+      setHasFocusInput(false);
     }
   }
 
-  // request the query list
-  // searchTerm = has been used the debounce with user input
   useEffect(() => {
-    if (searchTerm)
+    console.log(hasFocusInput);
+    if (hasFocusInput) {
+      console.log(queries);
+    }
+  }, [hasFocusInput]);
+
+  useEffect(() => {
+    if (searchTerm) {
       if (searchTerm.trim() !== "") {
         dispatch(queryListClear());
-        const URL = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
-        dispatch(requestQueryFetch({ url: URL, currentPage: "&page=1&" }));
-        setIsFocusing(true);
+        const PATH = `/search/movie?query=${encodeURIComponent(searchTerm)}&`;
+        dispatch(requestQueryFetch({ url: PATH, currentPage: "&page=1&" }));
+        setHasFocusInput(true);
       } else {
         // clear query when search term is empty
         dispatch(queryListClear());
       }
-    else if (searchTerm === "") {
-      setIsFocusing(false);
+    } else if (searchTerm === "") {
+      setHasFocusInput(false);
     }
   }, [searchTerm]);
 
-  // request Fetch
-  function queryFetch(title) {
+  function fetchAndGetMovieTitle(title) {
     // lastSearchTerm = prevent from request the fetch if user is re-fetching with the last searched query
-    if (title.trim() === "" || lastSearchTerm === title) return;
-    const tempQuery = title;
+    if (title.trim() === "") return;
+    const URL = `/search/movie?query=${encodeURIComponent(title)}&`;
 
     navigate("/search");
 
-    // clear all stored states
     dispatch(movieListClear());
-    dispatch(queryListClear());
-
-    const URL = `/search/movie?query=${encodeURIComponent(tempQuery)}&`;
-
-    // fetch
     dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
+    dispatch(historyAdd(title));
+    setUserQuery(title);
 
-    // add history in the store
-    dispatch(historyAdd(tempQuery));
-
-    // if requesting from aside search bar (not navbar)
+    // while menu trigger is on (mobile only), close the menu after searched
     if (setMenuOpen) {
       setMenuOpen(false);
     }
-    lastSearchTerm = tempQuery;
   }
 
   // get query from user input value
@@ -111,14 +100,14 @@ export default function SearchInput({ setMenuOpen }) {
 
   function keyDownHandler(e) {
     if (e.keyCode === 13) {
-      queryFetch(userQuery);
+      fetchAndGetMovieTitle(userQuery);
     }
   }
 
   // when clicking the p tag in the query list
   function queryClickHandler(title) {
-    queryFetch(title);
-    setIsFocusing(false);
+    fetchAndGetMovieTitle(title);
+    setHasFocusInput(false);
   }
 
   return (
@@ -129,7 +118,9 @@ export default function SearchInput({ setMenuOpen }) {
           value={userQuery}
           onChange={queryChangeHandler}
           onKeyDown={keyDownHandler}
-          onClick={() => setIsFocusing(true)}
+          onClick={() => {
+            setHasFocusInput(true);
+          }}
         />
 
         {/* query lists */}
@@ -137,7 +128,7 @@ export default function SearchInput({ setMenuOpen }) {
           {error ? (
             <p style={{ pointerEvents: "none" }}>Fetch Error...</p>
           ) : null}
-          {isFocusing && queries.length !== 0
+          {hasFocusInput && queries.length !== 0
             ? queries.map(({ id, title }, idx) => {
                 if (idx < 4) {
                   return (
@@ -150,8 +141,7 @@ export default function SearchInput({ setMenuOpen }) {
             : null}
         </div>
       </div>
-      {/* submit to request for fetching the current query string */}
-      <button onClick={() => queryFetch(userQuery)}>
+      <button onClick={() => fetchAndGetMovieTitle(userQuery)}>
         <img src={imgSearch} alt="saerch" />
       </button>
     </div>
