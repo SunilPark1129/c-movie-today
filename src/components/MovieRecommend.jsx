@@ -12,28 +12,28 @@ export default function MovieRecommend() {
 
   useEffect(() => {
     setRandomPage(null);
-    randomSelect();
+    rerollClickHandler();
   }, [lists]);
 
   const dispatch = useDispatch();
 
-  // when the user clicked targeted poster
-  function selectMovie() {
+  function openModalClickHandler() {
     dispatch(setMovie(randomPage));
   }
 
   // select random index
-  // random number from the page and the item in the page list
-  function randomSelect() {
+  function rerollClickHandler() {
     if (lists.length !== 0) {
-      // get random number for page
-      const tempPage = Math.floor(Math.random() * lists.length);
-      if (lists[tempPage].movies.length !== 0) {
-        // get random number for item
-        const tempItem = Math.floor(
-          Math.random() * lists[tempPage].movies.length
+      // get random number from page
+      const RANDOM_PAGE_INDEX = Math.floor(Math.random() * lists.length);
+
+      if (lists[RANDOM_PAGE_INDEX].movies.length !== 0) {
+        // get random number from item
+        const RANDOM_MOVIE_INDEX = Math.floor(
+          Math.random() * lists[RANDOM_PAGE_INDEX].movies.length
         );
-        setRandomPage(lists[tempPage].movies[tempItem]);
+
+        setRandomPage(lists[RANDOM_PAGE_INDEX].movies[RANDOM_MOVIE_INDEX]);
       }
     }
   }
@@ -66,8 +66,8 @@ export default function MovieRecommend() {
             <h3>Recommend</h3>
             <p>{randomPage.title}</p>
             <div className="lists__recommend__buttons">
-              <button onClick={selectMovie}>View</button>
-              <button onClick={randomSelect}>
+              <button onClick={openModalClickHandler}>View</button>
+              <button onClick={rerollClickHandler}>
                 <img src={imgRefresh} alt="refresh" />
               </button>
             </div>
