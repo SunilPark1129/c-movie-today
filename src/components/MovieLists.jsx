@@ -7,58 +7,65 @@ import MovieRecommend from "./MovieRecommend";
 import Loading from "./Loading";
 import NoPoster from "./NoPoster";
 
-import { FetchError, SearchFrontPage, ListEmpty } from "./CatchPage";
+import { FetchError, SearchHomePage, ListEmpty } from "./CatchPage";
 
 import { useLists, useSelected } from "../hooks/useReducer";
 
-// display movie per page
-function DisplayLists() {
+function DisplayMovieLists() {
   const { data, lists } = useLists();
 
   if (lists[0]?.movies.length !== 0) {
-    // making another components to find and set the ref into last element
     return lists.map(({ movies, page }) => (
       <div className="lists__content" key={page}>
-        <Lists
+        <DisplayMovieContent
           movies={movies}
           page={lists[lists.length - 1].page + 1}
           totalPage={data.total_pages}
         />
       </div>
     ));
-  } else {
-    return <ListEmpty />;
   }
+
+  return <ListEmpty />;
 }
 
-// display movie poster
-function Lists({ totalPage, movies, page }) {
+function DisplayMovieContent({ totalPage, movies, page }) {
   const dispatch = useDispatch();
-  // get last movie element
-  const lastRef = useRef(null);
+  const lastIdxRef = useRef(null);
 
-  // IntersectionObserver has been used
-  // if scroll position is reached the last movie item, boolean true
-  const isVisible = useObserver(lastRef, { threshold: 0.5 });
+  // IntersectionObserver - if current scroll position is on the last movie item
+  const hasReachedPosition = useObserver(lastIdxRef, { threshold: 0.5 });
 
   useEffect(() => {
-    if (isVisible) {
-      if (totalPage >= page) {
-        dispatch(
-          requestFetch({
-            url: null,
-            currentPage: `&page=${page}&`,
-          })
-        );
-      }
+    if (hasReachedPosition && totalPage >= page) {
+      dispatch(
+        requestFetch({
+          url: null,
+          currentPage: `&page=${page}&`,
+        })
+      );
     }
-  }, [isVisible]);
+  }, [hasReachedPosition]);
 
-  function movieClickHandler(target) {
+  function posterClickHandler(target) {
     dispatch(setMovie(target));
   }
 
-  // set ref in the last index of movie to set the IntersectionObserver
+  function getPosterImage({ title, poster_path, backdrop_path }) {
+    if (poster_path || backdrop_path) {
+      return (
+        <img
+          src={
+            "https://image.tmdb.org/t/p/w500/" + (poster_path || backdrop_path)
+          }
+          alt={title}
+        />
+      );
+    }
+
+    return <NoPoster />;
+  }
+
   return movies.map(
     (
       { id, title, poster_path, release_date, vote_average, backdrop_path },
@@ -68,20 +75,10 @@ function Lists({ totalPage, movies, page }) {
         <div
           className="lists__item"
           key={id}
-          ref={idx === 19 ? lastRef : null}
-          onClick={() => movieClickHandler(movies[idx])}
+          ref={idx === 19 ? lastIdxRef : null}
+          onClick={() => posterClickHandler(movies[idx])}
         >
-          {poster_path || backdrop_path ? (
-            <img
-              src={
-                "https://image.tmdb.org/t/p/w500/" +
-                (poster_path || backdrop_path)
-              }
-              alt={title}
-            />
-          ) : (
-            <NoPoster />
-          )}
+          {getPosterImage({ title, poster_path, backdrop_path })}
           <div className="lists__item__text-box">
             <p>{title}</p>
             <p>{release_date ? release_date.replace(/-/g, "/") : "??"}</p>
@@ -95,22 +92,25 @@ function Lists({ totalPage, movies, page }) {
   );
 }
 
-// header for movie lists
-function ListHeader() {
+function CategoryHeader() {
   const { data } = useLists();
-  let nums = data.total_results;
+
+  let totalMovieNums = data.total_results;
   let movie = "movies";
-  if (nums > 10000) {
-    nums = "10000+";
+  const MAX_MOVIE_LISTS = 10000;
+
+  if (totalMovieNums > MAX_MOVIE_LISTS) {
+    totalMovieNums = "10000+";
   }
-  if (nums <= 1) {
+  if (totalMovieNums <= 1) {
     movie = "movie";
   }
+
   return (
     <header className="lists__header">
       <h3>MOVIES</h3>
       <p>
-        We have found <span>{nums}</span> {movie}
+        We have found <span>{totalMovieNums}</span> {movie}
       </p>
     </header>
   );
@@ -127,19 +127,18 @@ export default function MovieLists() {
         {!error &&
           lists.length === 0 &&
           !isLoading &&
-          currentLocation === "search" && <SearchFrontPage />}
+          currentLocation === "search" && <SearchHomePage />}
 
-        {/* display fetched movie items */}
         {!error && lists.length !== 0 && (
           <>
             {/* header */}
-            <ListHeader />
+            <CategoryHeader />
 
-            {/* display random movie list */}
+            {/* display random movie */}
             <MovieRecommend />
 
-            {/* display fetched items */}
-            <DisplayLists />
+            {/* display movies */}
+            <DisplayMovieLists />
           </>
         )}
 
@@ -150,10 +149,7 @@ export default function MovieLists() {
         {isLoading && <Loading />}
       </div>
 
-      {/* display selected movie content */}
-      {/* {selectedMovie && <MovieModal />} */}
-
-      {/* edge radius border for styling */}
+      {/* style */}
       <div className="border">
         <div></div>
         <div></div>

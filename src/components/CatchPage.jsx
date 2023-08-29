@@ -53,7 +53,7 @@ export function ListEmpty() {
 }
 
 // Front page for Search page
-export function SearchFrontPage() {
+export function SearchHomePage() {
   return (
     <article className="page-announce">
       <div className="page-announce__text">
