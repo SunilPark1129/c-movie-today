@@ -45,18 +45,10 @@ export default function SearchInput({ setMenuOpen }) {
   }, []);
 
   function documentClickHandler(e) {
-    // console.log(containerRef.current.contains(e.target));
     if (containerRef.current && !containerRef.current.contains(e.target)) {
       setHasFocusInput(false);
     }
   }
-
-  useEffect(() => {
-    console.log(hasFocusInput);
-    if (hasFocusInput) {
-      console.log(queries);
-    }
-  }, [hasFocusInput]);
 
   useEffect(() => {
     if (searchTerm) {
