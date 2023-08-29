@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   requestFetch,
   movieListClear,
@@ -16,35 +16,20 @@ import { useQueries } from "../../hooks/useReducer";
 
 import MenuToggler from "../../components/MenuToggler";
 
-let firstTimeVisit;
 function History({ setMenuOpen }) {
   const dispatch = useDispatch();
   const { histories } = useQueries();
 
-  // every time when the user opens the search page
-  useEffect(() => {
-    firstTimeVisit = true;
-  }, []);
-
-  // request Fetch
-  function queryFetch(title) {
-    // prevent from re-fetching if the user is requesting API with the current history
-    if (!firstTimeVisit && histories[0] === title) return;
-    const tempQuery = title;
+  function historyClickHandler(title) {
     dispatch(movieListClear());
     dispatch(queryListClear());
-    const URL = `/search/movie?query=${encodeURIComponent(tempQuery)}&`;
-    dispatch(historyAdd(tempQuery));
-
-    // request another datas to display movie lists
-    dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
+    dispatch(historyAdd(title));
+    const URL_PATH = `/search/movie?query=${encodeURIComponent(title)}&`;
+    dispatch(requestFetch({ url: URL_PATH, currentPage: "&page=1&" }));
     setMenuOpen(false);
-
-    firstTimeVisit = false;
   }
 
-  // remove targeted history
-  function historyRemoveClickHandler(title) {
+  function removeHistoryClickHandler(title) {
     dispatch(historyListClear(title));
   }
 
@@ -53,8 +38,8 @@ function History({ setMenuOpen }) {
       {histories && histories.length !== 0
         ? histories.map((title) => (
             <div className="search__history__content" key={title}>
-              <p onClick={() => queryFetch(title)}>{title}</p>
-              <button onClick={() => historyRemoveClickHandler(title)}>
+              <p onClick={() => historyClickHandler(title)}>{title}</p>
+              <button onClick={() => removeHistoryClickHandler(title)}>
                 <img src={imgClose} alt="close" />
               </button>
             </div>

@@ -69,12 +69,12 @@ export default function SearchInput({ setMenuOpen }) {
   function fetchAndGetMovieTitle(title) {
     // lastSearchTerm = prevent from request the fetch if user is re-fetching with the last searched query
     if (title.trim() === "") return;
-    const URL = `/search/movie?query=${encodeURIComponent(title)}&`;
+    const URL_PATH = `/search/movie?query=${encodeURIComponent(title)}&`;
 
     navigate("/search");
 
     dispatch(movieListClear());
-    dispatch(requestFetch({ url: URL, currentPage: "&page=1&" }));
+    dispatch(requestFetch({ url: URL_PATH, currentPage: "&page=1&" }));
     dispatch(historyAdd(title));
     setUserQuery(title);
 

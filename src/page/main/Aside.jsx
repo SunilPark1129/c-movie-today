@@ -15,19 +15,16 @@ export default function Aside() {
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
 
-  // sort button handler
   function sortClickHandler(url, name) {
     setGetSortURL(url);
     setGetSortName(name);
   }
 
-  // genre button handler
   function genreClickHandler(id, name) {
     setGetGenreID(id);
     setGetGenreName(name);
   }
 
-  // when clicking the button, fetching the URL
   useEffect(() => {
     dispatch(movieListClear());
     const URL = getSortURL + "with_genres=" + getGenreID;
