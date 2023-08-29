@@ -110,7 +110,11 @@ function CategoryHeader() {
 
   return (
     <header className="lists__header">
-      <h3>MOVIES</h3>
+      <h1>Movie Lists</h1>
+      <p>
+        You can see various details such as movie posters, ratings, overview,
+        and more.
+      </p>
       <p>
         We have found <span>{totalMovieNums}</span> {movie}
       </p>
