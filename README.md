@@ -1,5 +1,5 @@
 # C Movie Today
-![c movie today](https://github.com/SunilPark1129/c-movie-today/assets/106734133/31a04663-977a-46db-9558-20314e35d518)
+![c movie today](https://github.com/SunilPark1129/c-movie-today/assets/106734133/5118bf43-7438-4937-b480-77c96edebfa8)
 
 Aug, 2023 deployed website - [Link](https://cmovietoday.netlify.app/)<br>
 
@@ -19,7 +19,7 @@ Jun, 2022 first version - [Github Link](https://github.com/SunilPark1129/cinema-
 > <img src="https://github.com/SunilPark1129/c-movie-today/assets/106734133/dcb0fb1b-df5e-4190-90c2-9f2908f3a7a2" width="300" ><br>
 Nov, 2022 second version - [Github Link](https://github.com/SunilPark1129/re-cinema-movie)<br>
 
-> <img src="https://github.com/SunilPark1129/c-movie-today/assets/106734133/a37fcda9-b9c1-495a-8da4-cb234c64e067" width="300" ><br>
+> <img src="https://github.com/SunilPark1129/c-movie-today/assets/106734133/5118bf43-7438-4937-b480-77c96edebfa8" width="300" ><br>
 Aug, 2023 latest version - current page
 
 
