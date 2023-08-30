@@ -94,7 +94,7 @@ function DisplayMovieContent({ totalPage, movies, page }) {
   );
 }
 
-function CategoryHeader() {
+function MovieNumbers() {
   const { data } = useLists();
 
   let totalMovieNums = data.total_results;
@@ -109,16 +109,11 @@ function CategoryHeader() {
   }
 
   return (
-    <header className="lists__header">
-      <h1>Movie Lists</h1>
-      <p>
-        You can see various details such as movie posters, ratings, overview,
-        and more.
-      </p>
+    <div className="lists__header-box">
       <p>
         We have found <span>{totalMovieNums}</span> {movie}
       </p>
-    </header>
+    </div>
   );
 }
 
@@ -136,6 +131,13 @@ export default function MovieLists() {
 
   return (
     <article className="lists">
+      <div className="lists__header-box">
+        <h1>MOVIE TABLE</h1>
+        <p>
+          Click on the poster to see various details such as movie posters,
+          ratings, overview, and more.
+        </p>
+      </div>
       <div className="lists__container">
         {!error &&
           lists.length === 0 &&
@@ -145,7 +147,7 @@ export default function MovieLists() {
         {!error && lists.length !== 0 && (
           <>
             {/* header */}
-            <CategoryHeader />
+            <MovieNumbers />
 
             {/* display random movie */}
             <MovieRecommend />

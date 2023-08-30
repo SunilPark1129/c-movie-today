@@ -55,10 +55,10 @@ export default function MovieModal({ selectedMovie }) {
             )}
           </div>
           <div className="modal__info">
-            <header className="modal__header">
+            <div className="modal__header">
               <h4>{title}</h4>
               <p className="modal__header__original">{original_title}</p>
-            </header>
+            </div>
             <div className="modal__text-box">
               <div>
                 <p>

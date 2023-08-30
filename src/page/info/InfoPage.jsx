@@ -5,9 +5,14 @@ import "../styles/info.css";
 export default function InfoPage() {
   return (
     <main className="info">
-      <header>
+      <div className="info__header">
         <h1>Information</h1>
-      </header>
+        <p>
+          Take the time to hear about our team and stories, and if you have any
+          feedback or questions, feel free to reach out to us via email at any
+          time.
+        </p>
+      </div>
       <div>
         <section>
           <h3>About us</h3>

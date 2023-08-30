@@ -119,7 +119,7 @@ aside .dot {
   background-color: var(--bg-clr);
   min-height: 100vh;
 }
-.lists__header {
+.lists__header-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -130,8 +130,9 @@ aside .dot {
   z-index: 99;
   gap: 1em;
   box-shadow: 0px 10px 6px -6px rgba(20, 20, 20, 0.527);
+  text-align: center;
 }
-.lists__header span {
+.lists__header-box span {
   color: var(--point-clr);
   font-weight: bold;
 }

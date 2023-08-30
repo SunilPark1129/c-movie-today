@@ -133,7 +133,7 @@ aside {
   background-color: var(--bg-clr);
   min-height: 100vh;
 
-  &__header {
+  &__header-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -144,6 +144,7 @@ aside {
     z-index: 99;
     gap: 1em;
     box-shadow: 0px 10px 6px -6px rgba(20, 20, 20, 0.527);
+    text-align: center;
 
     span {
       color: var(--point-clr);
