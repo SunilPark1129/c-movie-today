@@ -9,7 +9,7 @@ import NoPoster from "./NoPoster";
 
 import { movieListClear } from "../redux/reducers/movieFetchReducer";
 
-import { FetchError, SearchHomePage, ListEmpty } from "./CatchPage";
+import { FetchError, ListEmpty } from "./CatchPage";
 
 import { useLists } from "../hooks/useReducer";
 
@@ -40,6 +40,7 @@ function DisplayMovieContent({ totalPage, movies, page }) {
 
   useEffect(() => {
     if (hasReachedPosition && totalPage >= page) {
+      console.log("h");
       dispatch(
         requestFetch({
           url: null,
@@ -125,50 +126,28 @@ export default function MovieLists() {
   // clear stored items
   useEffect(() => {
     dispatch(movieListClear());
-  }, []);
-
-  const currentURL = window.location.pathname;
+  }, [dispatch]);
 
   return (
-    <article className="lists">
-      <div className="lists__header-box">
-        <h1>MOVIE TABLE</h1>
-        <p>
-          Click on the poster to see various details such as movie posters,
-          ratings, overview, and more.
-        </p>
-      </div>
-      <div className="lists__container">
-        {!error &&
-          lists.length === 0 &&
-          !isLoading &&
-          currentURL.includes("search") && <SearchHomePage />}
+    <div className="lists__container">
+      {!error && lists.length !== 0 && (
+        <>
+          {/* header */}
+          <MovieNumbers />
 
-        {!error && lists.length !== 0 && (
-          <>
-            {/* header */}
-            <MovieNumbers />
+          {/* display random movie */}
+          <MovieRecommend />
 
-            {/* display random movie */}
-            <MovieRecommend />
+          {/* display movies */}
+          <DisplayMovieLists />
+        </>
+      )}
 
-            {/* display movies */}
-            <DisplayMovieLists />
-          </>
-        )}
+      {/* fetch error */}
+      {error ? <FetchError /> : null}
 
-        {/* fetch error */}
-        {error && <FetchError />}
-
-        {/* is loading */}
-        {isLoading && <Loading />}
-      </div>
-
-      {/* style */}
-      <div className="border">
-        <div></div>
-        <div></div>
-      </div>
-    </article>
+      {/* is loading */}
+      {isLoading ? <Loading /> : null}
+    </div>
   );
 }

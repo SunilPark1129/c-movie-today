@@ -8,7 +8,7 @@ import "./styles/catchpage.css";
 export function FetchError() {
   const { error } = useLists();
   return (
-    <div className="page-announce">
+    <article className="page-announce">
       <div className="apage-announce__text">
         <h3>Fetch Error</h3>
         <ul>
@@ -24,14 +24,14 @@ export function FetchError() {
         </ul>
       </div>
       <img src={imgEmpty} alt="man is thinking" />
-    </div>
+    </article>
   );
 }
 
 // if fetched item is empty, display this content
 export function ListEmpty() {
   return (
-    <div className="page-announce">
+    <article className="page-announce">
       <div className="page-announce__text">
         <h3>Empty</h3>
         <ul>
@@ -48,17 +48,16 @@ export function ListEmpty() {
         </ul>
       </div>
       <img src={imgEmpty} alt="man is thinking" />
-    </div>
+    </article>
   );
 }
 
 // Front page for Search page
 export function SearchHomePage() {
-  console.log("shown");
   return (
     <article className="page-announce">
       <div className="page-announce__text">
-        <h3>Search</h3>
+        <h3>Tips</h3>
         <ul>
           <li>
             You can <span>quickly</span> and <span>easily</span> search for
