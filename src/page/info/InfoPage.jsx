@@ -1,10 +1,22 @@
 import React from "react";
 import logo from "../../assets/main_logo.png";
 import "../styles/info.css";
+import { Helmet } from "react-helmet";
 
 export default function InfoPage() {
   return (
     <main className="info">
+      <Helmet>
+        <title>C Movie Today | Info</title>
+        <meta
+          name="description"
+          content="C Movie Today | Explore our About Us section to learn about our mission and team. Contact us for inquiries, feedback, or collaborations."
+        />
+        <meta
+          name="keywords"
+          content="C Movie Today, about us, contact us, API permissions, mission, team, inquiries, feedback, collaborations, movie data integration"
+        />
+      </Helmet>
       <div className="info__header">
         <h1>Information</h1>
         <p>
