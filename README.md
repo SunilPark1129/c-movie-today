@@ -10,6 +10,11 @@ Nov, 2022 second version - [Github Link](https://github.com/SunilPark1129/re-cin
 
 -------------------
 
+## Project Description
+
+- "C Movie Today" is a website that provides a service to easily access information about the latest movies, old movies, ratings, overviews, and more through a user-friendly UI.
+
+
 ## Self-improvement
 
 This project is completed in three versions. The reason for creating the same project three times was that I wanted to experience my own development and growth firsthand. By re-creating it multiple times, I could confidently assess how much my skills had improved over time. The website, which went through several versions over a year, reflects my evolving journey.
@@ -26,11 +31,6 @@ Nov, 2022 second version - [Github Link](https://github.com/SunilPark1129/re-cin
 
 > <img src="https://github.com/SunilPark1129/c-movie-today/assets/106734133/5118bf43-7438-4937-b480-77c96edebfa8" width="300" ><br>
 Aug, 2023 latest version - current page
-
-
-## Project Description
-
-- "C Movie Today" is a website that provides a service to easily access information about the latest movies, old movies, ratings, overviews, and more through a user-friendly UI.
 
 ## Features
 > Features that I would like to introduce.
