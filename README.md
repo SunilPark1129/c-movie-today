@@ -75,7 +75,7 @@ git clone https://github.com/SunilPark1129/c-movie-today.git
 ```
 npm install
 ```
-> Dependencies I have installed :<br>axios<br> react-router-dom<br> redux<br> redux toolkit<br>  
+> Dependencies I have installed :<br>axios<br> react-router-dom<br> redux<br> redux toolkit<br> react helmet<br>
 
 3. run the website
 ```
