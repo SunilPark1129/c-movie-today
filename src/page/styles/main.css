@@ -315,6 +315,7 @@ aside .dot {
   color: var(--fnt-white-clr);
   text-shadow: 0px 1px 5px black;
   font-weight: bold;
+  pointer-events: none;
 }
 .lists__item__text-box p span {
   color: red;

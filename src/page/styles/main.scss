@@ -346,6 +346,7 @@ aside {
         color: var(--fnt-white-clr);
         text-shadow: 0px 1px 5px black;
         font-weight: bold;
+        pointer-events: none;
 
         span {
           color: red;
