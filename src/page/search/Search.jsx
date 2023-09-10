@@ -3,7 +3,7 @@ import Aside from "./Aside";
 import MovieLists from "../../components/MovieLists";
 import "../styles/main.css";
 import Tip from "./Tip";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Search() {
   return (
@@ -12,12 +12,13 @@ export default function Search() {
         <title>C Movie Today | Search</title>
         <meta
           name="description"
-          content="C Movie Today | Your ultimate destination for movie enthusiasts. Discover and explore a vast collection of films, reviews, ratings, and more on our movie search platform. Stay updated with the latest in the world of cinema."
+          content="C Movie Today | Discover and explore a vast collection of films, reviews, ratings, and more on our movie search platform."
         />
         <meta
           name="keywords"
           content="C Movie Today, movie search, film search, movie reviews, movie ratings, cinema, entertainment, latest films"
         />
+        <link rel="canonical" href="https://cmovietoday.com/search" />
       </Helmet>
       <Aside />
       <article className="lists">

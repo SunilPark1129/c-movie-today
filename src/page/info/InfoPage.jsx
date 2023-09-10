@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../assets/main_logo.png";
 import "../styles/info.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function InfoPage() {
   return (
@@ -16,6 +16,7 @@ export default function InfoPage() {
           name="keywords"
           content="C Movie Today, about us, contact us, API permissions, mission, team, inquiries, feedback, collaborations, movie data integration"
         />
+        <link rel="canonical" href="https://cmovietoday.com/info" />
       </Helmet>
       <div className="info__header">
         <h1>Information</h1>
