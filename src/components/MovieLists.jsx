@@ -90,7 +90,7 @@ function DisplayMovieContent({ totalPage, movies, page, currentPage }) {
             className="lists__item__text-box"
             data-value={`${currentPage},${idx}`}
           >
-            <p>{title}</p>
+            <p className="notranslate">{title}</p>
             <p>{release_date ? release_date.replace(/-/g, "/") : "??"}</p>
             <p>
               <span>&hearts;</span> {vote_average}

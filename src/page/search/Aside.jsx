@@ -38,7 +38,12 @@ function History({ setMenuOpen }) {
       {histories && histories.length !== 0
         ? histories.map((title) => (
             <div className="search__history__content" key={title}>
-              <p onClick={() => historyClickHandler(title)}>{title}</p>
+              <p
+                className="notranslate"
+                onClick={() => historyClickHandler(title)}
+              >
+                {title}
+              </p>
               <button onClick={() => removeHistoryClickHandler(title)}>
                 <img src={imgClose} alt="close" />
               </button>

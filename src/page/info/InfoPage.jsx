@@ -53,7 +53,7 @@ export default function InfoPage() {
               If you have any question, you are free to contact through via
               email
             </p>
-            <p>sunilpark1129@gmail.com</p>
+            <p className="notranslate">sunilpark1129@gmail.com</p>
           </div>
         </section>
         <div className="dot"></div>

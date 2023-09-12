@@ -64,7 +64,7 @@ export default function MovieRecommend() {
           </div>
           <div className="lists__recommend__text-box">
             <h3>Today's Recommend</h3>
-            <p>{randomPage.title}</p>
+            <p className="notranslate">{randomPage.title}</p>
             <div className="lists__recommend__buttons">
               <button onClick={openModalClickHandler}>View</button>
               <button onClick={rerollClickHandler}>

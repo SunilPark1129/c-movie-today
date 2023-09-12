@@ -124,7 +124,11 @@ export default function SearchInput({ setMenuOpen }) {
             ? queries.map(({ id, title }, idx) => {
                 if (idx < 4) {
                   return (
-                    <p key={id} onClick={() => queryClickHandler(title)}>
+                    <p
+                      className="notranslate"
+                      key={id}
+                      onClick={() => queryClickHandler(title)}
+                    >
                       {title}
                     </p>
                   );
