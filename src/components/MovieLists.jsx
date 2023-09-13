@@ -15,24 +15,14 @@ import { useLists } from "../hooks/useReducer";
 
 function DisplayMovieLists() {
   const { data, lists } = useLists();
-  const dispatch = useDispatch();
-
-  // get dataset value from child div
-  function getSelectedMovie(e) {
-    if (e.target.className !== "lists__item__text-box") return;
-
-    const [moviePage, movieIdx] = e.target.dataset.value.split(",");
-    dispatch(setMovie(lists[moviePage].movies[movieIdx]));
-  }
 
   if (lists[0]?.movies.length !== 0) {
     return lists.map(({ movies, page }, idx) => (
-      <div className="lists__content" key={page} onClick={getSelectedMovie}>
+      <div className="lists__content" key={page}>
         <DisplayMovieContent
           movies={movies}
           page={lists[lists.length - 1].page + 1}
           totalPage={data.total_pages}
-          currentPage={idx}
         />
       </div>
     ));
@@ -41,7 +31,7 @@ function DisplayMovieLists() {
   return <ListEmpty />;
 }
 
-function DisplayMovieContent({ totalPage, movies, page, currentPage }) {
+function DisplayMovieContent({ totalPage, movies, page }) {
   const dispatch = useDispatch();
   const lastIdxRef = useRef(null);
 
@@ -74,6 +64,10 @@ function DisplayMovieContent({ totalPage, movies, page, currentPage }) {
     return <NoPoster />;
   }
 
+  function postClickHandler(idx) {
+    dispatch(setMovie(movies[idx]));
+  }
+
   return movies.map(
     (
       { id, title, poster_path, release_date, vote_average, backdrop_path },
@@ -84,12 +78,10 @@ function DisplayMovieContent({ totalPage, movies, page, currentPage }) {
           className="lists__item"
           key={id}
           ref={idx === 19 ? lastIdxRef : null}
+          onClick={() => postClickHandler(idx)}
         >
           {getPosterImage({ title, poster_path, backdrop_path })}
-          <div
-            className="lists__item__text-box"
-            data-value={`${currentPage},${idx}`}
-          >
+          <div className="lists__item__text-box">
             <p className="notranslate">{title}</p>
             <p>{release_date ? release_date.replace(/-/g, "/") : "??"}</p>
             <p>
