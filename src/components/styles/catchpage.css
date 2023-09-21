@@ -36,6 +36,16 @@
   width: 22em;
   animation: 2s ani-updown ease-in-out infinite alternate;
 }
+@media (max-width: 900px) {
+  .page-announce {
+    padding: 4em 1em;
+  }
+}
+@media (max-width: 600px) {
+  .page-announce {
+    padding: 2em 1em;
+  }
+}
 
 @keyframes ani-updown {
   100% {
