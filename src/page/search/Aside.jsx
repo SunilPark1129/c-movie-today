@@ -60,19 +60,16 @@ export default function Aside() {
   return (
     <>
       <aside className={menuOpen ? "toggled" : ""}>
-        <section>
+        <section className="search__section">
           <h3>Search</h3>
+          <section>
+            {/* search input */}
+            <SearchInput setMenuOpen={(bool) => setMenuOpen(bool)} />
+          </section>
         </section>
-
-        {/* design purposed */}
         <div className="dot"></div>
-
-        <section>
-          {/* search input */}
-          <SearchInput setMenuOpen={(bool) => setMenuOpen(bool)} />
-        </section>
-
-        <section>
+        <section className="search__section">
+          <h3>History</h3>
           {/* history lists */}
           <History setMenuOpen={(bool) => setMenuOpen(bool)} />
         </section>

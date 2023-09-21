@@ -20,15 +20,24 @@ aside .dot {
   border-radius: 50%;
 }
 
+.search__section {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
 .search__history {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
 }
 .search__history__content {
   display: flex;
   gap: 0.5em;
   align-items: center;
+  justify-content: space-between;
 }
 .search__history p {
   color: var(--fnt-white-clr);
@@ -36,10 +45,10 @@ aside .dot {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
-  width: 100%;
   cursor: pointer;
 }
 .search__button button {
+  flex-shrink: 0;
   width: 2em;
   height: 2em;
   border-radius: 4px;

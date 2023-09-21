@@ -25,14 +25,24 @@ aside {
 }
 
 .search {
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
   &__history {
     display: flex;
     flex-direction: column;
     gap: 1em;
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+
     &__content {
       display: flex;
       gap: 0.5em;
       align-items: center;
+      justify-content: space-between;
     }
     p {
       color: var(--fnt-white-clr);
@@ -40,13 +50,13 @@ aside {
       overflow: hidden;
       text-overflow: ellipsis;
       text-align: center;
-      width: 100%;
       cursor: pointer;
     }
   }
 
   &__button {
     button {
+      flex-shrink: 0;
       width: 2em;
       height: 2em;
       border-radius: 4px;
