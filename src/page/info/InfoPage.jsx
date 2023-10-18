@@ -28,7 +28,7 @@ export default function InfoPage() {
       </div>
       <div>
         <section>
-          <h3>About us</h3>
+          <h2>About us</h2>
           <div>
             <p>
               C Movie Today is a site that allows users to easily search for and
@@ -46,7 +46,7 @@ export default function InfoPage() {
         </section>
         <div className="dot"></div>
         <section className="info__contact">
-          <h3>Contact</h3>
+          <h2>Contact</h2>
           <div>
             <p>Ciname Movie project is created by Sunil Park</p>
             <p>
@@ -58,7 +58,7 @@ export default function InfoPage() {
         </section>
         <div className="dot"></div>
         <section>
-          <h3>Application Programming Interface</h3>
+          <h2>Application Programming Interface</h2>
           <div className="info__img-box">
             <img src={logo} alt="C Movie Today logo" width={60} />
             <img
