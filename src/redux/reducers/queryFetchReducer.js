@@ -14,7 +14,7 @@ const initialState = {
   histories: [],
 };
 
-const API_KEY = "api_key=b0a4d245d5b20ec7da2f1eb0a7b47d89";
+const API_KEY = process.env.API_SECRET;
 const BASE_URL = "https://api.themoviedb.org/3";
 let currentURL;
 
@@ -24,7 +24,9 @@ export const requestQueryFetch = createAsyncThunk(
     if (url !== null) {
       currentURL = url;
     }
-    const data = await axios.get(BASE_URL + currentURL + currentPage + API_KEY);
+    const data = await axios.get(
+      BASE_URL + currentURL + currentPage + `api_key=${API_KEY}`
+    );
     return { res: data.data };
   }
 );
