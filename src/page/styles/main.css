@@ -8,6 +8,7 @@ aside {
   padding: 1em;
   gap: 2em;
   align-items: center;
+  width: 100%;
 }
 aside section {
   width: 100%;
@@ -78,7 +79,7 @@ aside .dot {
   gap: 0.8em;
   flex-direction: column;
 }
-.main aside button {
+.main aside section button {
   max-width: 20rem;
   margin: auto;
   display: flex;
@@ -100,7 +101,7 @@ aside .dot {
   box-shadow: 0px 0px 0px 0px rgba(80, 80, 80, 0.459);
   height: 3em;
 }
-.main aside button:after {
+.main aside section button:after {
   transition: 0.3s transform ease-in-out;
   box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
   position: absolute;
@@ -112,15 +113,15 @@ aside .dot {
   left: 100%;
   transform: translateX(100%);
 }
-.main aside button:hover {
+.main aside section button:hover {
   color: var(--point-clr);
 }
-.main aside button.activated {
+.main aside section button.activated {
   border-radius: 0.5em 0px 0px 0.5em;
   box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
   color: var(--point-clr);
 }
-.main aside button.activated:after {
+.main aside section button.activated:after {
   transform: translateX(0%);
 }
 
@@ -381,6 +382,9 @@ aside .dot {
   .main aside button.activated {
     border-radius: 0.5em;
     color: var(--point-clr);
+  }
+  .search aside {
+    padding-top: 8rem;
   }
   .lists {
     padding: 0 1em;

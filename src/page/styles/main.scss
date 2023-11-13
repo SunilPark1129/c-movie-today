@@ -8,6 +8,7 @@ aside {
   padding: 1em;
   gap: 2em;
   align-items: center;
+  width: 100%;
 
   section {
     width: 100%;
@@ -87,50 +88,50 @@ aside {
       display: flex;
       gap: 0.8em;
       flex-direction: column;
-    }
 
-    button {
-      max-width: 20rem;
-      margin: auto;
-      display: flex;
-      width: 100%;
-      padding: 1em 0.3em;
-      justify-content: center;
-      text-align: center;
-      background-color: var(--bg-clr);
-      border: none;
-      border-radius: 0.5em;
-      font-weight: bold;
-      color: var(--fnt-reg-clr);
-      cursor: pointer;
-      position: relative;
-      transition-property: border-radius, box-shadow;
-      transition-duration: 0.3s;
-      transition-timing-function: ease-in-out;
-      outline: none;
-      box-shadow: 0px 0px 0px 0px rgba(80, 80, 80, 0.459);
-      height: 3em;
-      &:after {
-        transition: 0.3s transform ease-in-out;
-        box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
-        position: absolute;
-        content: "";
+      button {
+        max-width: 20rem;
+        margin: auto;
+        display: flex;
         width: 100%;
-        height: 100%;
+        padding: 1em 0.3em;
+        justify-content: center;
+        text-align: center;
         background-color: var(--bg-clr);
-        top: 0;
-        left: 100%;
-        transform: translateX(100%);
-      }
-      &:hover {
-        color: var(--point-clr);
-      }
-      &.activated {
-        border-radius: 0.5em 0px 0px 0.5em;
-        box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
-        color: var(--point-clr);
+        border: none;
+        border-radius: 0.5em;
+        font-weight: bold;
+        color: var(--fnt-reg-clr);
+        cursor: pointer;
+        position: relative;
+        transition-property: border-radius, box-shadow;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+        outline: none;
+        box-shadow: 0px 0px 0px 0px rgba(80, 80, 80, 0.459);
+        height: 3em;
         &:after {
-          transform: translateX(0%);
+          transition: 0.3s transform ease-in-out;
+          box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 100%;
+          background-color: var(--bg-clr);
+          top: 0;
+          left: 100%;
+          transform: translateX(100%);
+        }
+        &:hover {
+          color: var(--point-clr);
+        }
+        &.activated {
+          border-radius: 0.5em 0px 0px 0.5em;
+          box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
+          color: var(--point-clr);
+          &:after {
+            transform: translateX(0%);
+          }
         }
       }
     }
@@ -424,6 +425,11 @@ aside {
           color: var(--point-clr);
         }
       }
+    }
+  }
+  .search {
+    aside {
+      padding-top: 8rem;
     }
   }
 
