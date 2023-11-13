@@ -62,9 +62,18 @@ export default function Aside() {
             );
           })}
         </section>
+        <div className="scroll-to-top">
+          <button
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            To top
+          </button>
+        </div>
       </aside>
 
-      {/* menu open bar */}
+      {/* menu open toggler */}
       {/* only exist when window width is under 1000px */}
       <MenuToggler
         menuOpen={menuOpen}

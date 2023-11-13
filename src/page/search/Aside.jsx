@@ -73,6 +73,15 @@ export default function Aside() {
           {/* history lists */}
           <History setMenuOpen={(bool) => setMenuOpen(bool)} />
         </section>
+        <div className="scroll-to-top">
+          <button
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            To top
+          </button>
+        </div>
       </aside>
 
       {/* menu open bar */}

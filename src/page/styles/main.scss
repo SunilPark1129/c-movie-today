@@ -26,6 +26,23 @@ aside {
     margin: 0 auto;
     border-radius: 50%;
   }
+
+  .scroll-to-top {
+    position: sticky;
+    top: 95%;
+    button {
+      border: 1px solid #a3a3a3;
+      padding: 0.5rem 2rem;
+      color: #a3a3a3;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: transparent;
+      &:hover {
+        background-color: rgba(206, 206, 206, 0.267);
+        color: #fff;
+      }
+    }
+  }
 }
 
 .search {
@@ -438,6 +455,9 @@ aside {
   }
 
   .border {
+    display: none;
+  }
+  .scroll-to-top {
     display: none;
   }
 }

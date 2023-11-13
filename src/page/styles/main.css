@@ -25,6 +25,22 @@ aside .dot {
   margin: 0 auto;
   border-radius: 50%;
 }
+aside .scroll-to-top {
+  position: sticky;
+  top: 95%;
+}
+aside .scroll-to-top button {
+  border: 1px solid #a3a3a3;
+  padding: 0.5rem 2rem;
+  color: #a3a3a3;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: transparent;
+}
+aside .scroll-to-top button:hover {
+  background-color: rgba(206, 206, 206, 0.267);
+  color: #fff;
+}
 
 .search__section {
   display: flex;
@@ -390,6 +406,9 @@ aside .dot {
     padding: 0 1em;
   }
   .border {
+    display: none;
+  }
+  .scroll-to-top {
     display: none;
   }
 }
