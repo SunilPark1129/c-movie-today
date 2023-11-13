@@ -75,7 +75,6 @@ export const getGenre = [
 
 export const sortBy = [
   { sortName: "Popular", sortURL: "/discover/movie?sort_by=popularity.desc&" },
-  { sortName: "Recent", sortURL: "/movie/upcoming?" },
   { sortName: "Voted", sortURL: "/discover/movie?sort_by=vote_count.desc&" },
   { sortName: "Revenue", sortURL: "/discover/movie?sort_by=revenue.desc&" },
 ];
