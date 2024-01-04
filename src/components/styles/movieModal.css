@@ -13,9 +13,6 @@
   /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
-  /* IE just in case... */
-  scrollbar-face-color: #888;
-  scrollbar-track-color: #f1f1f1;
 }
 .modal ::-webkit-scrollbar {
   width: 0px;
@@ -123,7 +120,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(104, 104, 104, 0.479);
+  background-color: rgba(0, 0, 0, 0.801);
   cursor: pointer;
   z-index: -1;
 }
