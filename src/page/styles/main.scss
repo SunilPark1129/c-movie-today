@@ -12,7 +12,6 @@ aside {
 
   section {
     width: 100%;
-    max-width: 300px;
     > h3 {
       text-align: center;
       color: var(--fnt-white-clr);
@@ -103,11 +102,11 @@ aside {
   aside {
     section {
       display: flex;
-      gap: 0.8em;
+      gap: 1.5em;
       flex-direction: column;
 
       button {
-        max-width: 20rem;
+        max-width: 24rem;
         margin: auto;
         display: flex;
         width: 100%;
@@ -126,7 +125,7 @@ aside {
         transition-timing-function: ease-in-out;
         outline: none;
         box-shadow: 0px 0px 0px 0px rgba(80, 80, 80, 0.459);
-        height: 3em;
+        // height: 3em;
         &:after {
           transition: 0.3s transform ease-in-out;
           box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.507);
@@ -297,25 +296,23 @@ aside {
     left: 0;
     top: 0;
     height: 100%;
-    width: 2em;
+    width: 100%;
     > div {
       position: absolute;
       width: 2em;
       height: 2em;
       z-index: 99;
-      left: 0;
       &::before,
       &::after {
         content: "";
         position: absolute;
         width: 2em;
         height: 2em;
-        left: 0;
-        top: 0;
         background-color: var(--primary-clr);
         z-index: 1;
       }
       &:nth-of-type(1) {
+        left: 0;
         top: 0;
         &::after {
           border-top-left-radius: 50%;
@@ -324,9 +321,28 @@ aside {
         }
       }
       &:nth-child(2) {
+        left: 0;
         bottom: 0;
         &::after {
           border-bottom-left-radius: 50%;
+          background-color: var(--bg-clr);
+          z-index: 3;
+        }
+      }
+      &:nth-child(3) {
+        top: 0;
+        right: 0;
+        &::after {
+          border-top-right-radius: 50%;
+          background-color: var(--bg-clr);
+          z-index: 3;
+        }
+      }
+      &:nth-child(4) {
+        bottom: 0;
+        right: 0;
+        &::after {
+          border-bottom-right-radius: 50%;
           background-color: var(--bg-clr);
           z-index: 3;
         }
@@ -438,7 +454,7 @@ aside {
           display: none;
         }
         &.activated {
-          border-radius: 0.5em;
+          border-radius: 0.5em !important;
           color: var(--point-clr);
         }
       }

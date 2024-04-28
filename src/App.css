@@ -9,7 +9,7 @@ p {
 .App {
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-clr);
+  background-color: var(--primary-clr);
 }
 
 .wrapper {

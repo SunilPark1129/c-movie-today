@@ -34,6 +34,8 @@ export default function Search() {
         <div className="border">
           <div></div>
           <div></div>
+          <div></div>
+          <div></div>
         </div>
       </article>
     </main>

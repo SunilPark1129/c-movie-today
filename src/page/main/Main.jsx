@@ -31,6 +31,8 @@ export default function Main() {
         <div className="border">
           <div></div>
           <div></div>
+          <div></div>
+          <div></div>
         </div>
       </article>
     </main>

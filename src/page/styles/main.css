@@ -12,7 +12,6 @@ aside {
 }
 aside section {
   width: 100%;
-  max-width: 300px;
 }
 aside section > h3 {
   text-align: center;
@@ -92,11 +91,11 @@ aside .scroll-to-top button:hover {
 
 .main aside section {
   display: flex;
-  gap: 0.8em;
+  gap: 1.5em;
   flex-direction: column;
 }
 .main aside section button {
-  max-width: 20rem;
+  max-width: 24rem;
   margin: auto;
   display: flex;
   width: 100%;
@@ -115,7 +114,6 @@ aside .scroll-to-top button:hover {
   transition-timing-function: ease-in-out;
   outline: none;
   box-shadow: 0px 0px 0px 0px rgba(80, 80, 80, 0.459);
-  height: 3em;
 }
 .main aside section button:after {
   transition: 0.3s transform ease-in-out;
@@ -268,26 +266,24 @@ aside .scroll-to-top button:hover {
   left: 0;
   top: 0;
   height: 100%;
-  width: 2em;
+  width: 100%;
 }
 .lists .border > div {
   position: absolute;
   width: 2em;
   height: 2em;
   z-index: 99;
-  left: 0;
 }
 .lists .border > div::before, .lists .border > div::after {
   content: "";
   position: absolute;
   width: 2em;
   height: 2em;
-  left: 0;
-  top: 0;
   background-color: var(--primary-clr);
   z-index: 1;
 }
 .lists .border > div:nth-of-type(1) {
+  left: 0;
   top: 0;
 }
 .lists .border > div:nth-of-type(1)::after {
@@ -296,10 +292,29 @@ aside .scroll-to-top button:hover {
   z-index: 3;
 }
 .lists .border > div:nth-child(2) {
+  left: 0;
   bottom: 0;
 }
 .lists .border > div:nth-child(2)::after {
   border-bottom-left-radius: 50%;
+  background-color: var(--bg-clr);
+  z-index: 3;
+}
+.lists .border > div:nth-child(3) {
+  top: 0;
+  right: 0;
+}
+.lists .border > div:nth-child(3)::after {
+  border-top-right-radius: 50%;
+  background-color: var(--bg-clr);
+  z-index: 3;
+}
+.lists .border > div:nth-child(4) {
+  bottom: 0;
+  right: 0;
+}
+.lists .border > div:nth-child(4)::after {
+  border-bottom-right-radius: 50%;
   background-color: var(--bg-clr);
   z-index: 3;
 }
@@ -396,7 +411,7 @@ aside .scroll-to-top button:hover {
     display: none;
   }
   .main aside button.activated {
-    border-radius: 0.5em;
+    border-radius: 0.5em !important;
     color: var(--point-clr);
   }
   .search aside {
