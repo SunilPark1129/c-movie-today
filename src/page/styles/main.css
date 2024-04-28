@@ -267,6 +267,7 @@ aside .scroll-to-top button:hover {
   top: 0;
   height: 100%;
   width: 100%;
+  pointer-events: none;
 }
 .lists .border > div {
   position: absolute;

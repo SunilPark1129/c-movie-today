@@ -297,6 +297,7 @@ aside {
     top: 0;
     height: 100%;
     width: 100%;
+    pointer-events: none;
     > div {
       position: absolute;
       width: 2em;

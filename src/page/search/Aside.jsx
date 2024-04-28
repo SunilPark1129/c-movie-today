@@ -35,21 +35,27 @@ function History({ setMenuOpen }) {
 
   return (
     <div className="search__history search__button">
-      {histories && histories.length !== 0
-        ? histories.map((title) => (
-            <div className="search__history__content" key={title}>
-              <p
-                className="notranslate"
-                onClick={() => historyClickHandler(title)}
-              >
-                {title}
-              </p>
-              <button onClick={() => removeHistoryClickHandler(title)}>
-                <img src={imgClose} alt="close" />
-              </button>
-            </div>
-          ))
-        : null}
+      {histories && histories.length !== 0 ? (
+        histories.map((title) => (
+          <div className="search__history__content" key={title}>
+            <p
+              className="notranslate"
+              onClick={() => historyClickHandler(title)}
+            >
+              {title}
+            </p>
+            <button onClick={() => removeHistoryClickHandler(title)}>
+              <img src={imgClose} alt="close" />
+            </button>
+          </div>
+        ))
+      ) : (
+        <div className="search__history__content">
+          <p style={{ margin: "auto", cursor: "default" }}>
+            Search for the movie title
+          </p>
+        </div>
+      )}
     </div>
   );
 }
