@@ -38,6 +38,12 @@ nav {
   }
 }
 
+.nav__search {
+  max-width: 40rem;
+  width: 100%;
+  // padding-left: 1em;
+}
+
 @media (max-width: 500px) {
   .nav__search {
     display: none;

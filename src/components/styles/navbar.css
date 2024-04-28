@@ -33,6 +33,11 @@ nav .active {
   color: var(--point-clr);
 }
 
+.nav__search {
+  max-width: 40rem;
+  width: 100%;
+}
+
 @media (max-width: 500px) {
   .nav__search {
     display: none;

@@ -7,7 +7,6 @@
 }
 .search__input-box {
   width: 100%;
-  max-width: 30em;
   position: relative;
 }
 .search__input-box input {
