@@ -3,6 +3,7 @@
   align-items: center;
   padding: 3em 1em;
   gap: 4em;
+  background-color: var(--bg-clr);
 }
 .info__header {
   text-align: center;
